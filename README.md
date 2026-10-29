@@ -127,6 +127,21 @@ m1-harness/scripts/rep-run-one.sh <c0|c2|c3|c0dsrpt> <rewrite|verbatim> <delta_m
 
 The batch drivers are `rep-batch-b.sh` (C0/C2/C3) and `rep-batch-c0-dsrpt.sh`. `run-*.sh` are the original per-cell pilot scripts. The script refuses to overwrite an existing run directory. Set `REP_SET` to write runs to a new results directory instead of `rep-2026-10-15b`. The subscriber applies the ACT extension-ID workaround with `C0_ACT_FORCE_EXT_ID=8`, which is the default in `c0-rewrite-sanity.mjs`.
 
+## What the scripts need that is not in this repository
+
+Every path the scripts reference was checked: shell scripts, JS sources, Go sources, Python, YAML and `docker-compose.yml`. Everything not listed below is in the repository. The scripts create `m1-harness/out/` and per-run output directories themselves, and write files into them.
+
+| Script(s) | Needs | How to obtain it |
+|---|---|---|
+| `rep-run-one.sh`, `run-c0*.sh`, `run-c1*.sh`, `run-c2*.sh`, `run-c3-*.sh`, `run-day1.sh` | `m1-harness/bin/livekit-server`, `-verbatim`, `-dsrpt`, `-verbatim-dsrpt` | Build from the patch series (Dependencies, step 2). `run-c0.sh` and `run-day1.sh` can also fetch the stock `livekit-server` v1.13.7 release tarball, or start it through `docker-compose.yml` if Docker is available. |
+| `rep-run-one.sh`, `run-c3-skew-delay*.sh` | `m1-harness/bin/c3-pion-publisher` | Build from `pion-publisher/` against the patched server-sdk-go (Dependencies, step 3). |
+| `run-c0*.sh`, `run-c1*.sh`, `run-c2*.sh` | `m1-harness/bin/c0-`, `c1-`, `c2-pion-publisher` | The scripts build these themselves from `pion-publisher/` with `go mod tidy && go build`. They need `m1-harness/third_party/server-sdk-go` set up first (Dependencies, step 3). `go mod tidy` contacts the Go module proxy and may rewrite `go.mod`/`go.sum`. |
+| All harness JS (`src/*.mjs`) | `m1-harness/node_modules/` (livekit-client UMD bundle, livekit-server-sdk, playwright) and Playwright's Chromium | `npm ci` and `npx playwright install chromium` (Dependencies, step 1). |
+| `rep-batch-b.sh`, `rep-batch-c0-dsrpt.sh` | Repository root at `/workspace/paper3` (hardcoded `cd`) | Edit the `cd` line to point at your clone, or check the repository out at that path. `rep-batch-b.sh` also runs `git commit` in the repository after each cell. |
+| `run-c0-dsrpt.sh`, `run-c0-verbatim*.sh`, `run-c1*.sh`, `run-c2*.sh`, `run-c3-*.sh` | `/workspace/paper3/m1-harness/bin/livekit-server` (hardcoded) | Used only as a fallback `pgrep` pattern when `ss` cannot find the process on port 7880. It is harmless elsewhere. |
+| `rep-run-one.sh`, batch scripts | Linux userland: `sha256sum`, `flock`, `timeout`, `ss`, bash `/dev/tcp` | Standard on Debian/Ubuntu. The data were collected on Linux (kernel 6.12). |
+| `analysis/*/rtp_rematch.py` | NumPy | `pip install numpy` |
+
 ## Licenses
 
 - Code (harness, scripts, analysis scripts): Apache-2.0, see `LICENSE`.
