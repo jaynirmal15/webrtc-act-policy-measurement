@@ -1,0 +1,124 @@
+{
+  "schema": "m1-c0-rewrite-sanity/v1",
+  "started_at": "2026-10-15T16:11:33.345Z",
+  "finished_at": "2026-10-15T16:15:55.854Z",
+  "pins": {
+    "livekit_version": "1.13.7",
+    "livekit_pin_sha": "8d11efdfcd4220092b6ac7b8a21af28526da5a6b",
+    "livekit_image": "livekit/livekit-server:v1.13.7",
+    "browser_version": "151.0.7922.34",
+    "playwright_version": "1.62.1",
+    "livekit_client_version": "2.22.3",
+    "act_uri": "http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time"
+  },
+  "policy": "stock_rewrite",
+  "pr_4812_applied": false,
+  "publisher_mode": "pion",
+  "room": "rep-c0-rewrite-d50-r3-1792080690",
+  "livekit_url": "ws://127.0.0.1:7880",
+  "epsilon_ms": 40,
+  "tau_b_ms": 10,
+  "delta_inject_ms": 50,
+  "delta_inject_ms_levels": [
+    50
+  ],
+  "inject_method": {
+    "name": "pion_act_wall_now_minus_delta",
+    "description": "Go Pion publisher stamps ACT = wall_now − Δ_inject via interceptor (MediaEngine ACT registration + WithInterceptors). Inject JSONL: t_inject_wall_ms, capture_unix_ms. Chromium Playwright subscriber enables ACT once and SDP-mungees ACT extmap id to match LiveKit/Pion SFU GetParameters id (apparatus workaround for GetParameters≠SDP id desync). policy=stock_rewrite; pr_4812_applied=false.",
+    "act_force_ext_id": 8,
+    "inject_log": "/workspace/paper3/results/rep-2026-10-15b/c0/rewrite/d50/run-3/inject.jsonl"
+  },
+  "formulas": {
+    "Lhat_ms": "t_playout_wall − t_capture_from_ACT",
+    "Lstar_ms": "t_playout_wall − (t_inject_wall − Δ_inject)",
+    "bias_b_ms": "Lhat − Lstar",
+    "sync_err_ms": "t_capture_audio − t_capture_video at matched playout marks"
+  },
+  "trials": [
+    {
+      "delta_inject_ms": 50,
+      "publisher_mode": "pion",
+      "captureTimestamp_seen": false,
+      "notes": [
+        "C0_PUBLISHER=pion — Chrome subscriber-only; inject log /workspace/paper3/results/rep-2026-10-15b/c0/rewrite/d50/run-3/inject.jsonl; ACT extmap force id=8",
+        "Chromium 151.0.7922.34",
+        "[sub] [m1-c0] ready {version: 2.22.3}",
+        "[sub] [m1-c0] ACT extmap id munge installed {forceId: 8, actUri: http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time}",
+        "pion ACT extmap force id=8",
+        "[sub] connection state changed: disconnected -> connecting {room: , roomID: undefined, participant: , participantID: }",
+        "[sub] signal connected {room: undefined, roomID: undefined, participant: undefined, participantID: undefined}",
+        "[sub] connected to Livekit Server edition: 0, version: 1.13.7, protocol: 17, region: , nodeId: ND_YDhZwDXssWWe, debugInfo: , agentProtocol: 1 {room: rep-c0-rewrite-d50-r3-1792080690, roomID: RM_rqygQ6CoXLs8, participant: c0-subscriber, participantID: PA_rYuy2vh8L5ms}",
+        "[sub] connection state changed: connecting -> connected {room: rep-c0-rewrite-d50-r3-1792080690, roomID: RM_rqygQ6CoXLs8, participant: c0-subscriber, participantID: PA_rYuy2vh8L5ms}",
+        "[sub] [m1-c0] subscriber connected {room: rep-c0-rewrite-d50-r3-1792080690, sid: PA_rYuy2vh8L5ms, serverVersion: 1.13.7}",
+        "subscriber serverVersion=1.13.7",
+        "act_enable {\"localSdpHasAct\":false,\"remoteSdpHasAct\":false,\"notes\":[\"negotiate ok\"]}",
+        "subscribed {\"kind\":\"video\",\"sid\":\"TR_VCXLceMuMsDYj6\",\"participant\":\"c0-pion-pub-d50\"}",
+        "sampling 16000ms Δ_inject=50 publisher=pion",
+        "pion inject events loaded n=100 from /workspace/paper3/results/rep-2026-10-15b/c0/rewrite/d50/run-3/inject.jsonl"
+      ],
+      "act_force_ext_id": 8,
+      "inject_log_path": "/workspace/paper3/results/rep-2026-10-15b/c0/rewrite/d50/run-3/inject.jsonl",
+      "rtt_ms_negative_control": 1,
+      "rvfc": {
+        "supported": true,
+        "count": 0
+      },
+      "sample_n": 0,
+      "ct_sample_n": 0,
+      "inject_event_n": 100,
+      "raw_samples": [],
+      "sample_preview": [],
+      "metrics": {
+        "paired_n": 0,
+        "biases_ms": [],
+        "paired_preview": [],
+        "paired_all": [],
+        "median_bias_ms": null,
+        "mean_bias_ms": null,
+        "abs_median_bias_ms": null,
+        "sync_err_ms": {
+          "available": false,
+          "n": 0,
+          "median": null,
+          "mean": null,
+          "compared_to_eps_40ms": null,
+          "note": "insufficient A+V matched playout marks"
+        },
+        "compared_to_tau_b_10ms": null
+      }
+    }
+  ],
+  "median_bias_ms": null,
+  "mean_bias_ms": null,
+  "abs_median_bias_ms": null,
+  "sync_err_ms": {
+    "available": false,
+    "n": 0,
+    "median": null,
+    "mean": null,
+    "compared_to_eps_40ms": null,
+    "note": "insufficient A+V matched playout marks"
+  },
+  "rtt_ms_neg_control": 1,
+  "compared_to_tau_b_10ms": null,
+  "compared_to_eps_40ms": null,
+  "verdict": "C0_APPARATUS_FAIL",
+  "interpretation": "C0 is a sanity/apparatus cell on stock rewrite — Success means the metrics pipeline works and bias is honestly measured. |bias|≤τ_b=10ms is NOT required under rewrite; τ_b remains the later policy decision threshold. ε=40ms applies to sync_err when A+V available.",
+  "notes": [
+    "C0_PUBLISHER=pion — Chrome subscriber-only; inject log /workspace/paper3/results/rep-2026-10-15b/c0/rewrite/d50/run-3/inject.jsonl; ACT extmap force id=8",
+    "Chromium 151.0.7922.34",
+    "[sub] [m1-c0] ready {version: 2.22.3}",
+    "[sub] [m1-c0] ACT extmap id munge installed {forceId: 8, actUri: http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time}",
+    "pion ACT extmap force id=8",
+    "[sub] connection state changed: disconnected -> connecting {room: , roomID: undefined, participant: , participantID: }",
+    "[sub] signal connected {room: undefined, roomID: undefined, participant: undefined, participantID: undefined}",
+    "[sub] connected to Livekit Server edition: 0, version: 1.13.7, protocol: 17, region: , nodeId: ND_YDhZwDXssWWe, debugInfo: , agentProtocol: 1 {room: rep-c0-rewrite-d50-r3-1792080690, roomID: RM_rqygQ6CoXLs8, participant: c0-subscriber, participantID: PA_rYuy2vh8L5ms}",
+    "[sub] connection state changed: connecting -> connected {room: rep-c0-rewrite-d50-r3-1792080690, roomID: RM_rqygQ6CoXLs8, participant: c0-subscriber, participantID: PA_rYuy2vh8L5ms}",
+    "[sub] [m1-c0] subscriber connected {room: rep-c0-rewrite-d50-r3-1792080690, sid: PA_rYuy2vh8L5ms, serverVersion: 1.13.7}",
+    "subscriber serverVersion=1.13.7",
+    "act_enable {\"localSdpHasAct\":false,\"remoteSdpHasAct\":false,\"notes\":[\"negotiate ok\"]}",
+    "subscribed {\"kind\":\"video\",\"sid\":\"TR_VCXLceMuMsDYj6\",\"participant\":\"c0-pion-pub-d50\"}",
+    "sampling 16000ms Δ_inject=50 publisher=pion",
+    "pion inject events loaded n=100 from /workspace/paper3/results/rep-2026-10-15b/c0/rewrite/d50/run-3/inject.jsonl"
+  ]
+}

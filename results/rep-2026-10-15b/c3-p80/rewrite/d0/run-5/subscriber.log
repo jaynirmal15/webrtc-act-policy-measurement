@@ -1,0 +1,9 @@
+--- C0 rewrite_dsrpt_skew ---
+verdict: C0_BIAS_EXCEEDS_TAU_B
+delta_inject_ms: 0
+captureTimestamp_seen: true
+paired_n: 221
+median_bias_ms: 13
+abs_median_bias_ms: 13
+compared_to_tau_b_10ms: false
+wrote: /workspace/paper3/results/rep-2026-10-15b/c3-p80/rewrite/d0/run-5/result.json

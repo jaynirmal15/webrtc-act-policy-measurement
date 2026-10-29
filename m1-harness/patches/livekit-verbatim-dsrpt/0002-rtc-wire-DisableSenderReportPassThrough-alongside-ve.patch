@@ -1,0 +1,45 @@
+From aa83495733244e71955aa44c8d798af6d0a0cd1d Mon Sep 17 00:00:00 2001
+From: Jay Nirmal <jay@local>
+Date: Tue, 29 Sep 2026 12:43:20 -0400
+Subject: [PATCH 2/3] rtc: wire DisableSenderReportPassThrough alongside
+ verbatim flag
+
+Same YAML exposure as dsrpt-wiring-on-pin, kept with
+ForwardAbsCaptureTimeVerbatim for rewrite-vs-verbatim stress under DSRPT.
+---
+ pkg/config/config.go       | 6 ++++++
+ pkg/service/roommanager.go | 1 +
+ 2 files changed, 7 insertions(+)
+
+diff --git a/pkg/config/config.go b/pkg/config/config.go
+index 82d72d7b..128def27 100644
+--- a/pkg/config/config.go
++++ b/pkg/config/config.go
+@@ -191,6 +191,12 @@ type RTCConfig struct {
+ 	// gate and SFU-clock rewrite (used for cross-stream A/V sync). Enable when a subscriber
+ 	// needs the original publisher capture timestamp, e.g. for end-to-end latency measurement.
+ 	ForwardAbsCaptureTimeVerbatim bool `yaml:"forward_abs_capture_time_verbatim,omitempty"`
++
++	// When true, SFU does not pass RTCP sender reports through unchanged and
++	// RTCPSenderReportPropagationDelay returns a non-zero clock offset used by
++	// abs-capture-time Rewrite (when ForwardAbsCaptureTimeVerbatim is false).
++	// Apparatus note (Paper3 M1): wired for DSRPT stress cell; was unwired on v1.13.7.
++	DisableSenderReportPassThrough bool `yaml:"disable_sender_report_pass_through,omitempty"`
+ }
+ 
+ type TURNServer struct {
+diff --git a/pkg/service/roommanager.go b/pkg/service/roommanager.go
+index 76b23b22..2b00b3f6 100644
+--- a/pkg/service/roommanager.go
++++ b/pkg/service/roommanager.go
+@@ -544,6 +544,7 @@ func (r *RoomManager) StartSession(
+ 		EnableRTPStreamRestartDetection:   r.config.RTC.EnableRTPStreamRestartDetection,
+ 		EnableWarp:                        enableWarp,
+ 		ForwardAbsCaptureTimeVerbatim:     r.config.RTC.ForwardAbsCaptureTimeVerbatim,
++		DisableSenderReportPassThrough:    r.config.RTC.DisableSenderReportPassThrough,
+ 	})
+ 	if err != nil {
+ 		prometheus.IncrementParticipantRtcCanceled(1, enableWarp)
+-- 
+2.47.3
+

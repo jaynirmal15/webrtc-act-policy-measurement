@@ -1,0 +1,13 @@
+pion-publisher host=ws://127.0.0.1:7880 room=rep-c3-p80-verbatim-d0-r1-1792078896 delta_inject_ms=0 av_offset_ms=0 stagger_start_ms=0 sr_hold_ms=0 sr_ntp_skew_ms=-80 video=/workspace/paper3/m1-harness/media/c0-video.ivf audio= inject_log=/workspace/paper3/results/rep-2026-10-15b/c3-p80/verbatim/d0/run-1/inject.jsonl
+2026/10/15 11:41:38 "level"=0 "msg"="published track" "name"="c2-video" "source"="CAMERA" "trackID"="TR_VCLuPMfP2DbUwo"
+published video track
+act-interceptor BindLocalStream ssrc=2600858091 mime=video/VP8 actID=5 exts=4 av_offset_ms=0
+sr-ntp-skew: first SR NTP skewed by -80 ms (before=0xee7b72b314c86fff after=0xee7b72b329435146)
+sr-ntp-skew: count=1 skew_ms=-80 ntp_before=0xee7b72b314c86fff ntp_after=0xee7b72b329435146
+2026/10/15 11:41:39 "level"=0 "msg"="handling subscribed quality update" "isLocal"=true "trackID"="TR_VCLuPMfP2DbUwo" "mime"="" "subscribedQualityUpdate"={}
+2026/10/15 11:41:39 "level"=0 "msg"="subscriber requested backup codec but no track found" "isLocal"=true "trackID"="TR_VCLuPMfP2DbUwo" "codec"="vp8"
+sr-ntp-skew: count=2 skew_ms=-80 ntp_before=0xee7b72b414b7bfff ntp_after=0xee7b72b42932a146
+ACT negotiated on sender kind=video id=5 uri=http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time
+local SDP contains ACT URI
+sr-ntp-skew: count=3 skew_ms=-80 ntp_before=0xee7b72b514caefff ntp_after=0xee7b72b52945d146
+publisher done sr_held=0 sr_released=0 first_held=0 first_released=0 sr_ntp_skew_ms=-80 sr_ntp_skewed=17

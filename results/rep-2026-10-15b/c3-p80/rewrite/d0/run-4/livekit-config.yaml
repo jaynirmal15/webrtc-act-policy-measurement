@@ -1,0 +1,22 @@
+# M1 C0 DSRPT stress — stock REWRITE policy with non-zero ACT rewrite offset.
+# Requires bin/livekit-server-dsrpt (pin v1.13.7 + rtc.disable_sender_report_pass_through wiring).
+# Stock release tarball does NOT accept this YAML field (never wired on v1.13.7).
+port: 7880
+bind_addresses:
+  - 127.0.0.1
+rtc:
+  tcp_port: 7881
+  port_range_start: 50000
+  port_range_end: 50100
+  use_external_ip: false
+  # Force passThrough=false → RTCPSenderReportPropagationDelay = AtAdjusted−Ntp ≠ 0
+  # → ACT Rewrite(offset) shifts capture timestamp under rewrite policy.
+  disable_sender_report_pass_through: true
+  # Do NOT set forward_abs_capture_time_verbatim (rewrite path).
+keys:
+  devkey: secret
+logging:
+  level: info
+  pion_level: warn
+room:
+  auto_create: true

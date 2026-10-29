@@ -1,0 +1,28 @@
+From 669dc9801327cb013f7dd5256a700c9598d1842d Mon Sep 17 00:00:00 2001
+From: Jay Nirmal <jay@local>
+Date: Tue, 29 Sep 2026 12:45:47 -0400
+Subject: [PATCH 2/2] paper3: log DSRPT/verbatim flags at StartSession for
+ stress cell
+
+---
+ pkg/service/roommanager.go | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/pkg/service/roommanager.go b/pkg/service/roommanager.go
+index b0820e1f..c72dbe73 100644
+--- a/pkg/service/roommanager.go
++++ b/pkg/service/roommanager.go
+@@ -485,6 +485,10 @@ func (r *RoomManager) StartSession(
+ 	}
+ 
+ 	enableWarp := !useOneShotSignallingMode && r.config.RTC.EnableWarp
++	pLogger.Infow("paper3 DSRPT stress: participant params",
++		"disableSenderReportPassThrough", r.config.RTC.DisableSenderReportPassThrough,
++		"forwardAbsCaptureTimeVerbatim", false,
++	)
+ 	participant, err = rtc.NewParticipant(rtc.ParticipantParams{
+ 		Identity:                 pi.Identity,
+ 		Name:                     pi.Name,
+-- 
+2.47.3
+

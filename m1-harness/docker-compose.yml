@@ -1,0 +1,21 @@
+# LiveKit v1.13.7 — pin matches m1-act-pins.json SHA 8d11efdfcd4220092b6ac7b8a21af28526da5a6b
+# Prefer official image tag v1.13.7. Record digest after pull:
+#   docker image inspect livekit/livekit-server:v1.13.7 --format '{{index .RepoDigests 0}}'
+#
+# Known Hub manifest digest (2026-09-14 push, verified via Hub API 2026-09-17):
+#   livekit/livekit-server@sha256:6fd3b7088874c4d119160dd688798dfec852bc014786d392caad15f6f63912a3
+# amd64 layer digest:
+#   sha256:5d3dcc475d064536d9948ebe4eeab8e3b24d6f07a46f6d71a3415a2901bbdc52
+services:
+  livekit:
+    image: livekit/livekit-server:v1.13.7
+    # Uncomment to pin by digest once pull succeeds on this host:
+    # image: livekit/livekit-server@sha256:6fd3b7088874c4d119160dd688798dfec852bc014786d392caad15f6f63912a3
+    command: ["--config", "/etc/livekit.yaml"]
+    volumes:
+      - ./livekit.yaml:/etc/livekit.yaml:ro
+    ports:
+      - "127.0.0.1:7880:7880"
+      - "127.0.0.1:7881:7881"
+      - "50000-50100:50000-50100/udp"
+    restart: "no"

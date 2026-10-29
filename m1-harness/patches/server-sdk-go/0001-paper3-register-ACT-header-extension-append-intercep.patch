@@ -1,0 +1,122 @@
+From 82ba4063c98dd3390b072ed24efcb0dd5e5c74c0 Mon Sep 17 00:00:00 2001
+From: paper3 <jaynirmal15@gmail.com>
+Date: Fri, 16 Oct 2026 13:10:52 -0400
+Subject: [PATCH] paper3: register ACT header extension + append interceptors
+ (pion publisher)
+
+---
+ readersampleprovider.go | 30 ++++++++++++++++++++++++++++++
+ transport.go            | 21 ++++++++++++++++-----
+ transport.go.patch-note |  2 ++
+ 3 files changed, 48 insertions(+), 5 deletions(-)
+ create mode 100644 transport.go.patch-note
+
+diff --git a/readersampleprovider.go b/readersampleprovider.go
+index 67a3689..3e558e4 100644
+--- a/readersampleprovider.go
++++ b/readersampleprovider.go
+@@ -17,6 +17,7 @@ package lksdk
+ import (
+ 	"context"
+ 	"encoding/binary"
++	"errors"
+ 	"fmt"
+ 	"io"
+ 	"os"
+@@ -351,6 +352,22 @@ func (p *ReaderSampleProvider) NextSample(ctx context.Context) (media.Sample, er
+ 
+ 	case webrtc.MimeTypeVP8, webrtc.MimeTypeVP9:
+ 		frame, header, err := p.ivfReader.ParseNextFrame()
++		// M1 C0 harness patch: loop IVF so publisher keeps stamping ACT for long C0 windows.
++		if errors.Is(err, io.EOF) {
++			if seeker, ok := p.reader.(io.Seeker); ok {
++				if _, seekErr := seeker.Seek(0, io.SeekStart); seekErr != nil {
++					return sample, err
++				}
++				var ivfHeader *ivfreader.IVFFileHeader
++				p.ivfReader, ivfHeader, err = ivfreader.NewWith(p.reader)
++				if err != nil {
++					return sample, err
++				}
++				p.ivfTimebase = float64(ivfHeader.TimebaseNumerator) / float64(ivfHeader.TimebaseDenominator)
++				p.lastTimestamp = 0
++				frame, header, err = p.ivfReader.ParseNextFrame()
++			}
++		}
+ 		if err != nil {
+ 			return sample, err
+ 		}
+@@ -360,6 +377,19 @@ func (p *ReaderSampleProvider) NextSample(ctx context.Context) (media.Sample, er
+ 		p.lastTimestamp = header.Timestamp
+ 	case webrtc.MimeTypeOpus:
+ 		payload, err := p.oggReader.ReadPacket()
++		// M1 C1 harness patch: loop Ogg/Opus like IVF so A+V ACT windows stay open.
++		if errors.Is(err, io.EOF) {
++			if seeker, ok := p.reader.(io.Seeker); ok {
++				if _, seekErr := seeker.Seek(0, io.SeekStart); seekErr != nil {
++					return sample, err
++				}
++				p.oggReader, _, err = oggreader.NewOggReader(p.reader)
++				if err != nil {
++					return sample, err
++				}
++				payload, err = p.oggReader.ReadPacket()
++			}
++		}
+ 		if err != nil {
+ 			return sample, err
+ 		}
+diff --git a/transport.go b/transport.go
+index f5b420c..375d32a 100644
+--- a/transport.go
++++ b/transport.go
+@@ -167,15 +167,17 @@ func NewPCTransport(params PCTransportParams) (*PCTransport, error) {
+ 		onRTTUpdate:        params.OnRTTUpdate,
+ 	}
+ 
++	// M1 harness patch: register caller interceptors BEFORE defaults so BindRTCPWriter
++	// wraps the writer that report.SenderInterceptor.loop uses (C2 SR-hold). ACT stamp
++	// BindLocalStream still works as innermost/outermost stamp either order.
+ 	if params.Interceptors != nil {
+ 		for _, c := range params.Interceptors {
+ 			i.Add(c)
+ 		}
+-	} else {
+-		err := t.registerDefaultInterceptors(params, i)
+-		if err != nil {
+-			return nil, err
+-		}
++	}
++	err := t.registerDefaultInterceptors(params, i)
++	if err != nil {
++		return nil, err
+ 	}
+ 
+ 	m.RegisterFeedback(webrtc.RTCPFeedback{Type: "nack"}, webrtc.RTPCodecTypeVideo)
+@@ -191,6 +193,15 @@ func NewPCTransport(params PCTransportParams) (*PCTransport, error) {
+ 		return nil, err
+ 	}
+ 
++	// M1 C0 harness patch: negotiate Absolute Capture Time so publisher can stamp ACT.
++	actURI := "http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time"
++	if err := m.RegisterHeaderExtension(webrtc.RTPHeaderExtensionCapability{URI: actURI}, webrtc.RTPCodecTypeVideo); err != nil {
++		return nil, err
++	}
++	if err := m.RegisterHeaderExtension(webrtc.RTPHeaderExtensionCapability{URI: actURI}, webrtc.RTPCodecTypeAudio); err != nil {
++		return nil, err
++	}
++
+ 	se := webrtc.SettingEngine{}
+ 	se.SetSRTPProtectionProfiles(dtls.SRTP_AEAD_AES_128_GCM, dtls.SRTP_AES128_CM_HMAC_SHA1_80)
+ 	se.SetDTLSRetransmissionInterval(dtlsRetransmissionInterval)
+diff --git a/transport.go.patch-note b/transport.go.patch-note
+new file mode 100644
+index 0000000..4555a8b
+--- /dev/null
++++ b/transport.go.patch-note
+@@ -0,0 +1,2 @@
++# C2 delayed-SR: custom interceptors registered BEFORE defaults so BindRTCPWriter
++# wraps the writer that report.SenderInterceptor.loop captures.
+-- 
+2.47.3
+

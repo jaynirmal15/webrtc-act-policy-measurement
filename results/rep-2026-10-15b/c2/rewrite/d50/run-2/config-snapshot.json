@@ -1,0 +1,9 @@
+{
+"cell":"c2","policy":"rewrite","policy_name":"stock_rewrite","pr_4812_applied":false,
+"delta_inject_ms":50,"run":2,"sr_ntp_skew_flag_ms":0,"sr_ntp_estimate_perturbation_ms":0,
+"sr_hold_ms":15000,"livekit_binary":"livekit-server","livekit_binary_sha256":"075b5fa17bad2f5d0dc16c2d60ee0053500b75a53c572991cf17a834a8b40863",
+"publisher_binary_sha256":"0491a4abba9f0e239e02aba46b0e355978bfba67c9e8e76dc6ddd1e1025a4c7e",
+"config":"livekit.yaml","act_force_ext_id":8,"room":"rep-c2-rewrite-d50-r2-1792079678","sample_ms":23000,
+"git_sha":"d184efc050644aca6bd7d42fd4b12fa387d211e1","git_dirty":false,
+"started_local":"2026-10-15T11:54:38-04:00"
+}

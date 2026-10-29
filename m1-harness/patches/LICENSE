@@ -1,0 +1,21 @@
+Patches in this directory
+=========================
+
+The patch series under livekit-dsrpt/, livekit-verbatim/ and
+livekit-verbatim-dsrpt/ modify LiveKit (https://github.com/livekit/livekit,
+base commit 8d11efdfcd4220092b6ac7b8a21af28526da5a6b, v1.13.7).
+The series under server-sdk-go/ modifies livekit/server-sdk-go v2.12.8
+(https://github.com/livekit/server-sdk-go).
+
+Both upstream projects are licensed under the Apache License, Version 2.0
+(Copyright LiveKit, Inc.). These patches are derivative works of that code and
+are distributed under the same Apache License, Version 2.0; see ../../LICENSE
+for the full text.
+
+Authorship is recorded in each patch's From: header. In particular,
+livekit-verbatim/0001 and livekit-verbatim-dsrpt/0001 are a cherry-pick of the
+flag commit from upstream LiveKit PR #4812 and keep that PR author's
+authorship; the remaining patches were written for this artifact.
+
+The patches modify the upstream files as described in each patch's
+commit message and diffstat.

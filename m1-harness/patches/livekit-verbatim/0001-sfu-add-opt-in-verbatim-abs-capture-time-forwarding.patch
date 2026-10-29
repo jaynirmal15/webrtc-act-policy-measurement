@@ -1,0 +1,246 @@
+From 19cb9888ec98836026e0e22eb4ef3451e427eb90 Mon Sep 17 00:00:00 2001
+From: elizabeth-muirhead-simplisafe <elizabeth.muirhead@simplisafe.com>
+Date: Fri, 28 Aug 2026 10:40:33 -0400
+Subject: [PATCH] sfu: add opt-in verbatim abs-capture-time forwarding
+
+Downtrack ACT forwarding gates on an RTCP sender report and
+unconditionally rewrites the capture timestamp into SFU clock domain,
+which suits cross-stream A/V sync but breaks consumers that need the
+original publisher capture time (e.g. end-to-end latency measurement).
+
+Add ForwardAbsCaptureTimeVerbatim (RTC config: forward_abs_capture_time_verbatim),
+off by default, which skips both the gate and the rewrite.
+---
+ pkg/config/config.go                          |  5 ++
+ pkg/rtc/participant.go                        |  5 ++
+ pkg/rtc/subscribedtrack.go                    |  1 +
+ pkg/rtc/types/interfaces.go                   |  1 +
+ .../typesfakes/fake_local_participant.go      | 63 +++++++++++++++++++
+ pkg/service/roommanager.go                    |  1 +
+ pkg/sfu/downtrack.go                          | 47 ++++++++------
+ 7 files changed, 105 insertions(+), 18 deletions(-)
+
+diff --git a/pkg/config/config.go b/pkg/config/config.go
+index 3ca89107..82d72d7b 100644
+--- a/pkg/config/config.go
++++ b/pkg/config/config.go
+@@ -186,6 +186,11 @@ type RTCConfig struct {
+ 
+ 	// enable rtp stream restart detection for published tracks
+ 	EnableRTPStreamRestartDetection bool `yaml:"enable_rtp_stream_restart_detection,omitempty"`
++
++	// Forward abs-capture-time to subscribers verbatim, skipping the default sender-report
++	// gate and SFU-clock rewrite (used for cross-stream A/V sync). Enable when a subscriber
++	// needs the original publisher capture timestamp, e.g. for end-to-end latency measurement.
++	ForwardAbsCaptureTimeVerbatim bool `yaml:"forward_abs_capture_time_verbatim,omitempty"`
+ }
+ 
+ type TURNServer struct {
+diff --git a/pkg/rtc/participant.go b/pkg/rtc/participant.go
+index 01b14479..15e2a0b3 100644
+--- a/pkg/rtc/participant.go
++++ b/pkg/rtc/participant.go
+@@ -219,6 +219,7 @@ type ParticipantParams struct {
+ 	SyncStreams                       bool
+ 	ForwardStats                      *sfu.ForwardStats
+ 	DisableSenderReportPassThrough    bool
++	ForwardAbsCaptureTimeVerbatim     bool
+ 	MetricConfig                      metric.MetricConfig
+ 	UseOneShotSignallingMode          bool
+ 	EnableMetrics                     bool
+@@ -568,6 +569,10 @@ func (p *ParticipantImpl) GetDisableSenderReportPassThrough() bool {
+ 	return p.params.DisableSenderReportPassThrough
+ }
+ 
++func (p *ParticipantImpl) GetForwardAbsCaptureTimeVerbatim() bool {
++	return p.params.ForwardAbsCaptureTimeVerbatim
++}
++
+ func (p *ParticipantImpl) ID() livekit.ParticipantID {
+ 	return p.id.Load().(livekit.ParticipantID)
+ }
+diff --git a/pkg/rtc/subscribedtrack.go b/pkg/rtc/subscribedtrack.go
+index 27d18c38..e9d6c66f 100644
+--- a/pkg/rtc/subscribedtrack.go
++++ b/pkg/rtc/subscribedtrack.go
+@@ -155,6 +155,7 @@ func NewSubscribedTrack(params SubscribedTrackParams) (*SubscribedTrack, error)
+ 		),
+ 		RTCPWriter:                     params.Subscriber.WriteSubscriberRTCP,
+ 		DisableSenderReportPassThrough: params.Subscriber.GetDisableSenderReportPassThrough(),
++		ForwardAbsCaptureTimeVerbatim:  params.Subscriber.GetForwardAbsCaptureTimeVerbatim(),
+ 		SupportsCodecChange:            params.Subscriber.SupportsCodecChange(),
+ 		EnableStartAtDesiredQuality:    params.EnableStartAtDesiredQuality,
+ 		Listener:                       s,
+diff --git a/pkg/rtc/types/interfaces.go b/pkg/rtc/types/interfaces.go
+index fa8e260b..b3e175f6 100644
+--- a/pkg/rtc/types/interfaces.go
++++ b/pkg/rtc/types/interfaces.go
+@@ -625,6 +625,7 @@ type LocalParticipant interface {
+ 	GetPacer() pacer.Pacer
+ 
+ 	GetDisableSenderReportPassThrough() bool
++	GetForwardAbsCaptureTimeVerbatim() bool
+ 
+ 	HandleMetrics(senderParticipantID livekit.ParticipantID, batch *livekit.MetricsBatch) error
+ 	HandleUpdateSubscriptions(
+diff --git a/pkg/rtc/types/typesfakes/fake_local_participant.go b/pkg/rtc/types/typesfakes/fake_local_participant.go
+index b6f349e7..9fed1922 100644
+--- a/pkg/rtc/types/typesfakes/fake_local_participant.go
++++ b/pkg/rtc/types/typesfakes/fake_local_participant.go
+@@ -371,6 +371,16 @@ type FakeLocalParticipant struct {
+ 	getEnabledPublishCodecsReturnsOnCall map[int]struct {
+ 		result1 []*livekit.Codec
+ 	}
++	GetForwardAbsCaptureTimeVerbatimStub        func() bool
++	getForwardAbsCaptureTimeVerbatimMutex       sync.RWMutex
++	getForwardAbsCaptureTimeVerbatimArgsForCall []struct {
++	}
++	getForwardAbsCaptureTimeVerbatimReturns struct {
++		result1 bool
++	}
++	getForwardAbsCaptureTimeVerbatimReturnsOnCall map[int]struct {
++		result1 bool
++	}
+ 	GetICEConfigStub        func() *livekit.ICEConfig
+ 	getICEConfigMutex       sync.RWMutex
+ 	getICEConfigArgsForCall []struct {
+@@ -3434,6 +3444,59 @@ func (fake *FakeLocalParticipant) GetEnabledPublishCodecsReturnsOnCall(i int, re
+ 	}{result1}
+ }
+ 
++func (fake *FakeLocalParticipant) GetForwardAbsCaptureTimeVerbatim() bool {
++	fake.getForwardAbsCaptureTimeVerbatimMutex.Lock()
++	ret, specificReturn := fake.getForwardAbsCaptureTimeVerbatimReturnsOnCall[len(fake.getForwardAbsCaptureTimeVerbatimArgsForCall)]
++	fake.getForwardAbsCaptureTimeVerbatimArgsForCall = append(fake.getForwardAbsCaptureTimeVerbatimArgsForCall, struct {
++	}{})
++	stub := fake.GetForwardAbsCaptureTimeVerbatimStub
++	fakeReturns := fake.getForwardAbsCaptureTimeVerbatimReturns
++	fake.recordInvocation("GetForwardAbsCaptureTimeVerbatim", []interface{}{})
++	fake.getForwardAbsCaptureTimeVerbatimMutex.Unlock()
++	if stub != nil {
++		return stub()
++	}
++	if specificReturn {
++		return ret.result1
++	}
++	return fakeReturns.result1
++}
++
++func (fake *FakeLocalParticipant) GetForwardAbsCaptureTimeVerbatimCallCount() int {
++	fake.getForwardAbsCaptureTimeVerbatimMutex.RLock()
++	defer fake.getForwardAbsCaptureTimeVerbatimMutex.RUnlock()
++	return len(fake.getForwardAbsCaptureTimeVerbatimArgsForCall)
++}
++
++func (fake *FakeLocalParticipant) GetForwardAbsCaptureTimeVerbatimCalls(stub func() bool) {
++	fake.getForwardAbsCaptureTimeVerbatimMutex.Lock()
++	defer fake.getForwardAbsCaptureTimeVerbatimMutex.Unlock()
++	fake.GetForwardAbsCaptureTimeVerbatimStub = stub
++}
++
++func (fake *FakeLocalParticipant) GetForwardAbsCaptureTimeVerbatimReturns(result1 bool) {
++	fake.getForwardAbsCaptureTimeVerbatimMutex.Lock()
++	defer fake.getForwardAbsCaptureTimeVerbatimMutex.Unlock()
++	fake.GetForwardAbsCaptureTimeVerbatimStub = nil
++	fake.getForwardAbsCaptureTimeVerbatimReturns = struct {
++		result1 bool
++	}{result1}
++}
++
++func (fake *FakeLocalParticipant) GetForwardAbsCaptureTimeVerbatimReturnsOnCall(i int, result1 bool) {
++	fake.getForwardAbsCaptureTimeVerbatimMutex.Lock()
++	defer fake.getForwardAbsCaptureTimeVerbatimMutex.Unlock()
++	fake.GetForwardAbsCaptureTimeVerbatimStub = nil
++	if fake.getForwardAbsCaptureTimeVerbatimReturnsOnCall == nil {
++		fake.getForwardAbsCaptureTimeVerbatimReturnsOnCall = make(map[int]struct {
++			result1 bool
++		})
++	}
++	fake.getForwardAbsCaptureTimeVerbatimReturnsOnCall[i] = struct {
++		result1 bool
++	}{result1}
++}
++
+ func (fake *FakeLocalParticipant) GetICEConfig() *livekit.ICEConfig {
+ 	fake.getICEConfigMutex.Lock()
+ 	ret, specificReturn := fake.getICEConfigReturnsOnCall[len(fake.getICEConfigArgsForCall)]
+diff --git a/pkg/service/roommanager.go b/pkg/service/roommanager.go
+index e25fae88..76b23b22 100644
+--- a/pkg/service/roommanager.go
++++ b/pkg/service/roommanager.go
+@@ -543,6 +543,7 @@ func (r *RoomManager) StartSession(
+ 		EnableParticipantDataBlob:         r.config.EnableParticipantDataBlob,
+ 		EnableRTPStreamRestartDetection:   r.config.RTC.EnableRTPStreamRestartDetection,
+ 		EnableWarp:                        enableWarp,
++		ForwardAbsCaptureTimeVerbatim:     r.config.RTC.ForwardAbsCaptureTimeVerbatim,
+ 	})
+ 	if err != nil {
+ 		prometheus.IncrementParticipantRtcCanceled(1, enableWarp)
+diff --git a/pkg/sfu/downtrack.go b/pkg/sfu/downtrack.go
+index 1b993158..6d1c49da 100644
+--- a/pkg/sfu/downtrack.go
++++ b/pkg/sfu/downtrack.go
+@@ -240,6 +240,7 @@ type DownTrackParams struct {
+ 	Trailer                        []byte
+ 	RTCPWriter                     func([]rtcp.Packet) error
+ 	DisableSenderReportPassThrough bool
++	ForwardAbsCaptureTimeVerbatim  bool
+ 	SupportsCodecChange            bool
+ 	StripPacketTrailer             bool
+ 	EnableStartAtDesiredQuality    bool
+@@ -1097,24 +1098,34 @@ func (d *DownTrack) WriteRTP(extPkt *buffer.ExtPacket, layer int32) int32 {
+ 	}
+ 	var actBytes []byte
+ 	if extPkt.AbsCaptureTimeExt != nil && d.absCaptureTimeExtID != 0 {
+-		// normalize capture time to SFU clock.
+-		// NOTE: even if there is estimated offset populated, just re-map the
+-		// absolute capture time stamp as it should be the same RTCP sender report
+-		// clock domain of publisher. SFU is normalising sender reports of publisher
+-		// to SFU clock before sending to subscribers. So, capture time should be
+-		// normalized to the same clock. Clear out any offset.
+-		_, _, _, refSenderReport := d.forwarder.GetSenderReportParams()
+-		if refSenderReport != nil {
+-			actExtCopy := *extPkt.AbsCaptureTimeExt
+-			if err = actExtCopy.Rewrite(
+-				rtpstats.RTCPSenderReportPropagationDelay(
+-					refSenderReport,
+-					!d.params.DisableSenderReportPassThrough,
+-				),
+-			); err == nil {
+-				actBytes, err = actExtCopy.Marshal()
+-				if err == nil {
+-					hdr.SetExtension(uint8(d.absCaptureTimeExtID), actBytes)
++		if d.params.ForwardAbsCaptureTimeVerbatim {
++			// Skip the sender-report gate and clock rewrite below so subscribers get
++			// the original publisher capture time (needed for accurate end-to-end
++			// latency measurement).
++			actBytes, err = extPkt.AbsCaptureTimeExt.Marshal()
++			if err == nil {
++				hdr.SetExtension(uint8(d.absCaptureTimeExtID), actBytes)
++			}
++		} else {
++			// normalize capture time to SFU clock.
++			// NOTE: even if there is estimated offset populated, just re-map the
++			// absolute capture time stamp as it should be the same RTCP sender report
++			// clock domain of publisher. SFU is normalising sender reports of publisher
++			// to SFU clock before sending to subscribers. So, capture time should be
++			// normalized to the same clock. Clear out any offset.
++			_, _, _, refSenderReport := d.forwarder.GetSenderReportParams()
++			if refSenderReport != nil {
++				actExtCopy := *extPkt.AbsCaptureTimeExt
++				if err = actExtCopy.Rewrite(
++					rtpstats.RTCPSenderReportPropagationDelay(
++						refSenderReport,
++						!d.params.DisableSenderReportPassThrough,
++					),
++				); err == nil {
++					actBytes, err = actExtCopy.Marshal()
++					if err == nil {
++						hdr.SetExtension(uint8(d.absCaptureTimeExtID), actBytes)
++					}
+ 				}
+ 			}
+ 		}
+-- 
+2.47.3
+

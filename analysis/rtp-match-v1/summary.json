@@ -1,0 +1,1273 @@
+{
+ "analysis_version": "rtp-match-v1",
+ "status": "post-review analysis correction applied to existing data; NOT the preregistered matcher",
+ "source": "/workspace/paper3/results/rep-2026-10-15b",
+ "tau_b_ms": 10,
+ "bootstrap": {
+  "resamples": 10000,
+  "seed": 20261015
+ },
+ "conditions": {
+  "c0/rewrite/d0": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     0.0,
+     0.0,
+     -1.0,
+     0.0,
+     -1.0
+    ],
+    "per_run_n": [
+     215,
+     222,
+     215,
+     217,
+     217
+    ],
+    "pooled_median": 0.0,
+    "pooled_n": 1086,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     0.0,
+     0.0,
+     -1.0,
+     0.0,
+     -1.0
+    ],
+    "per_run_n": [
+     215,
+     222,
+     215,
+     217,
+     217
+    ],
+    "pooled_median": 0.0,
+    "pooled_n": 1086,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": 22.0
+  },
+  "c0/rewrite/d50": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "per_run_n": [
+     217,
+     214,
+     225,
+     219,
+     219
+    ],
+    "pooled_median": 0.0,
+    "pooled_n": 1094,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "per_run_n": [
+     217,
+     214,
+     225,
+     219,
+     219
+    ],
+    "pooled_median": 0.0,
+    "pooled_n": 1094,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": 22.0
+  },
+  "c0/verbatim/d0": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "per_run_n": [
+     230,
+     234,
+     232,
+     221,
+     239
+    ],
+    "pooled_median": 0.0,
+    "pooled_n": 1156,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "per_run_n": [
+     230,
+     234,
+     232,
+     221,
+     239
+    ],
+    "pooled_median": 0.0,
+    "pooled_n": 1156,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": 22.0
+  },
+  "c0/verbatim/d50": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     -1.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "per_run_n": [
+     234,
+     235,
+     230,
+     237,
+     230
+    ],
+    "pooled_median": 0.0,
+    "pooled_n": 1166,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     -1.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "per_run_n": [
+     234,
+     235,
+     230,
+     237,
+     230
+    ],
+    "pooled_median": 0.0,
+    "pooled_n": 1166,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": 22.0
+  },
+  "c2/rewrite/d0": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     -1.0,
+     0.0,
+     -1.0,
+     0.0,
+     -1.0
+    ],
+    "per_run_n": [
+     191,
+     193,
+     219,
+     219,
+     194
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 1016,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     -1.0,
+     0.0,
+     -1.0,
+     0.0,
+     -1.0
+    ],
+    "per_run_n": [
+     191,
+     193,
+     219,
+     219,
+     194
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 1016,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 21.0,
+   "latency_old_med": 21.0
+  },
+  "c2/rewrite/d50": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     -1.0,
+     -1.0,
+     -1.0,
+     0.0,
+     0.0
+    ],
+    "per_run_n": [
+     196,
+     191,
+     197,
+     194,
+     196
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 974,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     -1.0,
+     -1.0,
+     -1.0,
+     0.0,
+     0.0
+    ],
+    "per_run_n": [
+     196,
+     191,
+     197,
+     194,
+     196
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 974,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 21.0,
+   "latency_old_med": 21.0
+  },
+  "c2/verbatim/d0": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     0.0,
+     -1.0,
+     -1.0,
+     -1.0,
+     -1.0
+    ],
+    "per_run_n": [
+     406,
+     408,
+     408,
+     405,
+     404
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 2031,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     0.0,
+     -1.0,
+     -1.0,
+     -1.0,
+     -1.0
+    ],
+    "per_run_n": [
+     406,
+     408,
+     408,
+     405,
+     404
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 2031,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 21.0,
+   "latency_old_med": 21.0
+  },
+  "c2/verbatim/d50": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     0.0,
+     -1.0,
+     -1.0,
+     -1.0,
+     0.0
+    ],
+    "per_run_n": [
+     407,
+     404,
+     406,
+     405,
+     405
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 2027,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     0.0,
+     -1.0,
+     -1.0,
+     -1.0,
+     0.0
+    ],
+    "per_run_n": [
+     407,
+     404,
+     406,
+     405,
+     405
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 2027,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": 22.0
+  },
+  "c3-m80/rewrite/d0": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     -81.0,
+     -81.0,
+     -81.0,
+     -81.0,
+     -81.0
+    ],
+    "per_run_n": [
+     219,
+     217,
+     217,
+     220,
+     216
+    ],
+    "pooled_median": -81.0,
+    "pooled_n": 1089,
+    "IQR": [
+     -81.0,
+     -80.0
+    ],
+    "p5_p95": [
+     -81.0,
+     -80.0
+    ],
+    "min_max": [
+     -81.0,
+     -80.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -81.0,
+     -81.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     -15.0,
+     -14.0,
+     -15.0,
+     -15.0,
+     -15.0
+    ],
+    "per_run_n": [
+     219,
+     217,
+     217,
+     220,
+     216
+    ],
+    "pooled_median": -15.0,
+    "pooled_n": 1089,
+    "IQR": [
+     -15.0,
+     -14.0
+    ],
+    "p5_p95": [
+     -15.0,
+     -14.0
+    ],
+    "min_max": [
+     -25.0,
+     -7.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -15.0,
+     -14.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": -44.0
+  },
+  "c3-m80/rewrite/d50": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     -81.0,
+     -81.0,
+     -81.0,
+     -81.0,
+     -81.0
+    ],
+    "per_run_n": [
+     217,
+     222,
+     217,
+     217,
+     218
+    ],
+    "pooled_median": -81.0,
+    "pooled_n": 1091,
+    "IQR": [
+     -81.0,
+     -80.0
+    ],
+    "p5_p95": [
+     -81.0,
+     -80.0
+    ],
+    "min_max": [
+     -81.0,
+     -80.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -81.0,
+     -81.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     -14.0,
+     -15.0,
+     -15.0,
+     -15.0,
+     -15.0
+    ],
+    "per_run_n": [
+     217,
+     222,
+     217,
+     217,
+     218
+    ],
+    "pooled_median": -15.0,
+    "pooled_n": 1091,
+    "IQR": [
+     -15.0,
+     -14.0
+    ],
+    "p5_p95": [
+     -16.0,
+     -14.0
+    ],
+    "min_max": [
+     -16.0,
+     -13.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -15.0,
+     -14.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": -44.0
+  },
+  "c3-m80/verbatim/d0": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     0.0,
+     -1.0,
+     0.0,
+     -0.5,
+     -1.0
+    ],
+    "per_run_n": [
+     230,
+     232,
+     229,
+     232,
+     232
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 1155,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     0.0,
+     -1.0,
+     0.0,
+     -0.5,
+     -1.0
+    ],
+    "per_run_n": [
+     230,
+     232,
+     229,
+     232,
+     232
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 1155,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": 22.0
+  },
+  "c3-m80/verbatim/d50": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     -1.0,
+     -1.0,
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "per_run_n": [
+     229,
+     233,
+     232,
+     231,
+     230
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 1155,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     -1.0,
+     -1.0,
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "per_run_n": [
+     229,
+     233,
+     232,
+     231,
+     230
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 1155,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": 22.0
+  },
+  "c3-p80/rewrite/d0": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     79.0,
+     79.0,
+     79.0,
+     79.0,
+     79.0
+    ],
+    "per_run_n": [
+     216,
+     222,
+     217,
+     215,
+     221
+    ],
+    "pooled_median": 79.0,
+    "pooled_n": 1091,
+    "IQR": [
+     79.0,
+     80.0
+    ],
+    "p5_p95": [
+     79.0,
+     80.0
+    ],
+    "min_max": [
+     79.0,
+     80.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     79.0,
+     79.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     13.0,
+     13.0,
+     13.0,
+     13.0,
+     13.0
+    ],
+    "per_run_n": [
+     216,
+     222,
+     217,
+     215,
+     221
+    ],
+    "pooled_median": 13.0,
+    "pooled_n": 1091,
+    "IQR": [
+     13.0,
+     14.0
+    ],
+    "p5_p95": [
+     12.0,
+     14.0
+    ],
+    "min_max": [
+     12.0,
+     15.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     13.0,
+     13.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": 88.0
+  },
+  "c3-p80/rewrite/d50": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     79.0,
+     79.0,
+     79.0,
+     79.0,
+     79.0
+    ],
+    "per_run_n": [
+     217,
+     217,
+     215,
+     214,
+     215
+    ],
+    "pooled_median": 79.0,
+    "pooled_n": 1078,
+    "IQR": [
+     79.0,
+     80.0
+    ],
+    "p5_p95": [
+     79.0,
+     80.0
+    ],
+    "min_max": [
+     79.0,
+     80.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     79.0,
+     79.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     13.0,
+     13.0,
+     13.0,
+     13.0,
+     13.0
+    ],
+    "per_run_n": [
+     217,
+     217,
+     215,
+     214,
+     215
+    ],
+    "pooled_median": 13.0,
+    "pooled_n": 1078,
+    "IQR": [
+     13.0,
+     14.0
+    ],
+    "p5_p95": [
+     13.0,
+     14.0
+    ],
+    "min_max": [
+     12.0,
+     15.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     13.0,
+     13.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": 88.0
+  },
+  "c3-p80/verbatim/d0": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     0.0,
+     0.0,
+     0.0,
+     -1.0,
+     0.0
+    ],
+    "per_run_n": [
+     229,
+     231,
+     229,
+     234,
+     229
+    ],
+    "pooled_median": 0.0,
+    "pooled_n": 1152,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     0.0,
+     0.0,
+     0.0,
+     -1.0,
+     0.0
+    ],
+    "per_run_n": [
+     229,
+     231,
+     229,
+     234,
+     229
+    ],
+    "pooled_median": 0.0,
+    "pooled_n": 1152,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": 22.0
+  },
+  "c3-p80/verbatim/d50": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     -1.0,
+     0.0,
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "per_run_n": [
+     228,
+     229,
+     233,
+     229,
+     230
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 1149,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     -1.0,
+     0.0,
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "per_run_n": [
+     228,
+     229,
+     233,
+     229,
+     230
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 1149,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": 22.0
+  }
+ },
+ "decision": {
+  "per_delta_fires": {
+   "d0": true,
+   "d50": true
+  },
+  "bias_arm_fires": true
+ },
+ "direction": {
+  "per_delta": {
+   "d0": {
+    "rewrite_m80": -81.0,
+    "rewrite_p80": 79.0,
+    "opposite_signs": true,
+    "cis_exclude_0": true,
+    "verbatim_abs_le_2": true,
+    "supported": true
+   },
+   "d50": {
+    "rewrite_m80": -81.0,
+    "rewrite_p80": 79.0,
+    "opposite_signs": true,
+    "cis_exclude_0": true,
+    "verbatim_abs_le_2": true,
+    "supported": true
+   }
+  },
+  "supported": true
+ },
+ "conversion_branches": {
+  "c0|rewrite|A:ct>wall+Y -> ct-NTP": 2180,
+  "c0|verbatim|A:ct>wall+Y -> ct-NTP": 2322,
+  "c2|rewrite|A:ct>wall+Y -> ct-NTP": 1990,
+  "c2|verbatim|A:ct>wall+Y -> ct-NTP": 4058,
+  "c3-m80|rewrite|A:ct>wall+Y -> ct-NTP": 2180,
+  "c3-m80|verbatim|A:ct>wall+Y -> ct-NTP": 2310,
+  "c3-p80|rewrite|A:ct>wall+Y -> ct-NTP": 2169,
+  "c3-p80|verbatim|A:ct>wall+Y -> ct-NTP": 2301
+ },
+ "examples": {
+  "c3-m80": {
+   "run": "c3-m80/rewrite/d0/run-1",
+   "sample_source": "rvfc",
+   "t_playout_wall_ms": 1792077520717,
+   "sub_rtpTimestamp": 1585768740,
+   "sub_captureTimestamp_raw": 4001066320788,
+   "ACT_unix_ms": 1792077520788,
+   "conv_branch": "A:ct>wall+Y -> ct-NTP",
+   "rtp_record": {
+    "line": 137,
+    "rtp": 1585768740,
+    "t_inject_wall_ms": 1792077520708,
+    "capture_unix_ms": 1792077520708,
+    "bias": -80
+   },
+   "old_record": {
+    "line": 138,
+    "rtp": 1585774680,
+    "t_inject_wall_ms": 1792077520773,
+    "capture_unix_ms": 1792077520773,
+    "bias": -15
+   },
+   "old_minus_rtp_capture_ms": 65
+  },
+  "c3-p80": {
+   "run": "c3-p80/rewrite/d0/run-1",
+   "sample_source": "rvfc",
+   "t_playout_wall_ms": 1792078415531,
+   "sub_rtpTimestamp": 135046270,
+   "sub_captureTimestamp_raw": 4001067215436,
+   "ACT_unix_ms": 1792078415436,
+   "conv_branch": "A:ct>wall+Y -> ct-NTP",
+   "rtp_record": {
+    "line": 137,
+    "rtp": 135046270,
+    "t_inject_wall_ms": 1792078415515,
+    "capture_unix_ms": 1792078415515,
+    "bias": 79
+   },
+   "old_record": {
+    "line": 136,
+    "rtp": 135040330,
+    "t_inject_wall_ms": 1792078415450,
+    "capture_unix_ms": 1792078415450,
+    "bias": 14
+   },
+   "old_minus_rtp_capture_ms": -65
+  }
+ },
+ "failed_runs_not_pooled": [
+  "c0-rewrite-d50-run-3-try3",
+  "c3-p80-rewrite-d50-run-5-try5",
+  "c3-p80-verbatim-d0-run-4-try4"
+ ]
+}

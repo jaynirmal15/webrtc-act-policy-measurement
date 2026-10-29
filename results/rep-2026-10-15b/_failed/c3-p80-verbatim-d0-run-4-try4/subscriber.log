@@ -1,0 +1,9 @@
+--- C0 verbatim_dsrpt_skew ---
+verdict: C0_APPARATUS_FAIL
+delta_inject_ms: 0
+captureTimestamp_seen: false
+paired_n: 0
+median_bias_ms: null
+abs_median_bias_ms: null
+compared_to_tau_b_10ms: null
+wrote: /workspace/paper3/results/rep-2026-10-15b/c3-p80/verbatim/d0/run-4/result.json

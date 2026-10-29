@@ -1,0 +1,9 @@
+{
+"cell":"c0dsrpt","policy":"rewrite","policy_name":"rewrite_dsrpt","pr_4812_applied":false,
+"delta_inject_ms":50,"run":3,"sr_ntp_skew_flag_ms":0,"sr_ntp_estimate_perturbation_ms":0,
+"sr_hold_ms":0,"livekit_binary":"livekit-server-dsrpt","livekit_binary_sha256":"6d5fa7aeb8ad167e58b7de6b24a0bb1713a52d485ec4862cb9f22e90a7436987",
+"publisher_binary_sha256":"0491a4abba9f0e239e02aba46b0e355978bfba67c9e8e76dc6ddd1e1025a4c7e",
+"config":"livekit-dsrpt.yaml","act_force_ext_id":8,"room":"rep-c0-dsrpt-rewrite-d50-r3-1792120573","sample_ms":16000,
+"git_sha":"77c326e0b06315743ea4804054e5ce83582d933d","git_dirty":false,
+"started_local":"2026-10-15T23:16:13-04:00"
+}

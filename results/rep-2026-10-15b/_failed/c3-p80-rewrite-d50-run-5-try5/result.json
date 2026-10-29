@@ -1,0 +1,2241 @@
+{
+  "schema": "m1-c0-rewrite-sanity/v1",
+  "started_at": "2026-10-15T15:40:09.966Z",
+  "finished_at": "2026-10-15T15:40:26.656Z",
+  "pins": {
+    "livekit_version": "1.13.7",
+    "livekit_pin_sha": "8d11efdfcd4220092b6ac7b8a21af28526da5a6b",
+    "livekit_image": "livekit/livekit-server:v1.13.7",
+    "browser_version": "151.0.7922.34",
+    "playwright_version": "1.62.1",
+    "livekit_client_version": "2.22.3",
+    "act_uri": "http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time"
+  },
+  "policy": "rewrite_dsrpt_skew",
+  "pr_4812_applied": false,
+  "publisher_mode": "pion",
+  "room": "rep-c3-p80-rewrite-d50-r5-1792078807",
+  "livekit_url": "ws://127.0.0.1:7880",
+  "epsilon_ms": 40,
+  "tau_b_ms": 10,
+  "delta_inject_ms": 50,
+  "delta_inject_ms_levels": [
+    50
+  ],
+  "inject_method": {
+    "name": "pion_act_wall_now_minus_delta",
+    "description": "Go Pion publisher stamps ACT = wall_now − Δ_inject via interceptor (MediaEngine ACT registration + WithInterceptors). Inject JSONL: t_inject_wall_ms, capture_unix_ms. Chromium Playwright subscriber enables ACT once and SDP-mungees ACT extmap id to match LiveKit/Pion SFU GetParameters id (apparatus workaround for GetParameters≠SDP id desync). policy=rewrite_dsrpt_skew; pr_4812_applied=false.",
+    "act_force_ext_id": 8,
+    "inject_log": "/workspace/paper3/results/rep-2026-10-15b/c3-p80/rewrite/d50/run-5/inject.jsonl"
+  },
+  "formulas": {
+    "Lhat_ms": "t_playout_wall − t_capture_from_ACT",
+    "Lstar_ms": "t_playout_wall − (t_inject_wall − Δ_inject)",
+    "bias_b_ms": "Lhat − Lstar",
+    "sync_err_ms": "t_capture_audio − t_capture_video at matched playout marks"
+  },
+  "trials": [
+    {
+      "delta_inject_ms": 50,
+      "publisher_mode": "pion",
+      "captureTimestamp_seen": false,
+      "notes": [
+        "C0_PUBLISHER=pion — Chrome subscriber-only; inject log /workspace/paper3/results/rep-2026-10-15b/c3-p80/rewrite/d50/run-5/inject.jsonl; ACT extmap force id=8",
+        "Chromium 151.0.7922.34",
+        "[sub] [m1-c0] ready {version: 2.22.3}",
+        "[sub] [m1-c0] ACT extmap id munge installed {forceId: 8, actUri: http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time}",
+        "pion ACT extmap force id=8",
+        "[sub] connection state changed: disconnected -> connecting {room: , roomID: undefined, participant: , participantID: }",
+        "[sub] signal connected {room: undefined, roomID: undefined, participant: undefined, participantID: undefined}",
+        "[sub] connected to Livekit Server edition: 0, version: 1.13.7, protocol: 17, region: , nodeId: ND_fsDxnyhAgoZy, debugInfo: , agentProtocol: 1 {room: rep-c3-p80-rewrite-d50-r5-1792078807, roomID: RM_vRSARd65FJU6, participant: c0-subscriber, participantID: PA_dSKfXT2V2dtp}",
+        "[sub] connection state changed: connecting -> connected {room: rep-c3-p80-rewrite-d50-r5-1792078807, roomID: RM_vRSARd65FJU6, participant: c0-subscriber, participantID: PA_dSKfXT2V2dtp}",
+        "[sub] [m1-c0] subscriber connected {room: rep-c3-p80-rewrite-d50-r5-1792078807, sid: PA_dSKfXT2V2dtp, serverVersion: 1.13.7}",
+        "subscriber serverVersion=1.13.7",
+        "act_enable {\"localSdpHasAct\":false,\"remoteSdpHasAct\":false,\"notes\":[\"negotiate ok\"]}",
+        "subscribed {\"kind\":\"video\",\"sid\":\"TR_VCVNr2dKrAC6fc\",\"participant\":\"c3-pion-pub-d50\"}",
+        "sampling 16000ms Δ_inject=50 publisher=pion",
+        "pion inject events loaded n=270 from /workspace/paper3/results/rep-2026-10-15b/c3-p80/rewrite/d50/run-5/inject.jsonl"
+      ],
+      "act_force_ext_id": 8,
+      "inject_log_path": "/workspace/paper3/results/rep-2026-10-15b/c3-p80/rewrite/d50/run-5/inject.jsonl",
+      "rtt_ms_negative_control": 0,
+      "rvfc": {
+        "supported": true,
+        "count": 140
+      },
+      "sample_n": 232,
+      "ct_sample_n": 0,
+      "inject_event_n": 270,
+      "raw_samples": [
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078817292,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016322144,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078817370,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016328084,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078817382,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016328084,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078817432,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016334024,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078817471,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016334024,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078817499,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016339964,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078817566,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016345904,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078817571,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016345904,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078817649,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016351844,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078817672,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016351844,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078817699,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016357784,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078817765,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016363724,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078817772,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016363724,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078817832,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016369664,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078817872,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016369664,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078817915,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016375604,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078817966,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016381544,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078817973,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016381544,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818033,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016387484,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078818073,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016387484,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818099,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016393424,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818166,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016399364,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078818174,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016399364,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818232,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016405304,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078818274,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016405304,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818299,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016411244,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818366,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016417184,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078818375,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016417184,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818432,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016423124,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078818475,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016423124,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818499,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016429064,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818566,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016435004,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078818576,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016435004,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818632,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016440944,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078818676,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016440944,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818682,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016446884,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818748,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016452824,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078818776,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016452824,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818832,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016458764,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078818877,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016458764,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818899,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016464704,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078818966,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016470644,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078818977,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016470644,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819032,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016476584,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078819077,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016476584,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819099,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016482524,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819166,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016488464,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078819178,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016488464,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819232,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016494404,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078819278,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016500344,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819299,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016500344,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819366,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016506284,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078819379,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016506284,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819432,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016512224,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078819479,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016518164,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819499,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016518164,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819566,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016524104,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078819579,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016524104,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819615,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016530044,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078819680,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016530044,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819683,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016535984,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819749,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016541924,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078819780,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016541924,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819815,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016547864,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078819880,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016553804,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819882,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016553804,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078819932,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016559744,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078819980,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016559744,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820016,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016565684,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078820081,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016571624,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820082,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016571624,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820149,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016577564,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078820182,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016577564,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820199,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016583504,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820282,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016589444,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078820283,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016589444,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820349,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016595384,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078820383,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016595384,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820416,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016601324,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820465,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016607264,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078820484,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016607264,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820532,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016613204,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078820584,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016613204,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820615,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016619144,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820682,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016625084,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078820684,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016625084,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820732,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016631024,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078820785,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016631024,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820798,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016636964,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820883,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016642904,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078820886,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016642904,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820932,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016648844,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078820986,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016648844,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078820999,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016654784,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821066,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016660724,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078821087,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016660724,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821149,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016666664,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078821187,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016666664,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821199,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016672604,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821266,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016678544,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078821288,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016678544,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821332,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016684484,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078821388,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016690424,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821399,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016690424,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821466,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016696364,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078821489,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016696364,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821532,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016702304,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078821589,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016708244,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821598,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016708244,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821665,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016714184,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078821689,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016714184,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821716,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016720124,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078821790,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016720124,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821799,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016726064,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821866,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016732004,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078821890,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016732004,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821932,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016737944,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078821982,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016743884,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078821990,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016743884,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822065,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016749824,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078822091,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016749824,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822131,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016755764,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822182,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016761704,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078822191,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016761704,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822249,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016767644,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078822291,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016767644,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822332,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016773584,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078822391,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016779524,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822398,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016779524,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822449,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016785464,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078822492,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016785464,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822515,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016791404,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822582,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016797344,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078822592,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016797344,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822665,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016803284,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078822692,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016803284,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822715,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016809224,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822782,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016815164,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078822792,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016815164,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822848,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016821104,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078822892,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016821104,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822932,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016827044,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078822982,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016832984,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078822993,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016832984,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823049,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016838924,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078823093,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016838924,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823115,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016844864,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823182,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016850804,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078823193,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016850804,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823248,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016856744,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078823294,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016856744,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823315,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016862684,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823383,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016868624,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078823394,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016868624,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823432,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016874564,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078823495,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016874564,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823515,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016880504,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823582,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016886444,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078823595,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016886444,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823648,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016892384,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078823695,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016892384,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823698,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016898324,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823765,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016904264,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078823795,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016904264,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823848,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016910204,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078823896,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016910204,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823915,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016916144,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078823965,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016922084,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078823996,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016922084,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824032,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016928024,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078824096,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016928024,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824115,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016933964,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824182,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016939904,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078824196,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016939904,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824232,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016945844,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078824297,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016951784,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824299,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016951784,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824365,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016957724,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078824397,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016957724,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824432,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016963664,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078824498,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016969604,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824498,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016969604,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824565,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016975544,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078824598,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016975544,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824632,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016981484,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078824698,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016987424,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824699,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016987424,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824766,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016993364,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078824799,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016993364,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824832,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016999304,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824899,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017005244,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078824899,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017005244,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078824965,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017011184,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078824999,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017011184,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825032,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017017124,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825099,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017023064,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078825099,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017023064,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825166,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017029004,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078825200,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017029004,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825215,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017034944,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825299,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017040884,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078825300,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017040884,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825365,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017046824,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078825400,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017046824,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825432,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017052764,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825482,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017058704,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078825500,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017058704,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825565,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017064644,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078825601,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017064644,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825632,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017070584,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825698,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017076524,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078825701,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017076524,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825748,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017082464,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078825801,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017082464,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825815,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017088404,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825899,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017094344,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078825902,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017094344,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078825948,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017100284,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078826002,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017100284,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078826015,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017106224,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078826082,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017112164,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078826102,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017112164,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078826166,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017118104,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078826203,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017118104,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078826215,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017124044,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078826282,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017129984,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078826303,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017129984,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078826349,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017135924,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078826404,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017141864,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078826415,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017141864,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078826482,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017147804,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078826504,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4017147804,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        }
+      ],
+      "sample_preview": [
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078817292,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016322144,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "timer",
+          "t_playout_wall_ms": 1792078817370,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016328084,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        },
+        {
+          "source_mark": "rvfc",
+          "t_playout_wall_ms": 1792078817382,
+          "trackKind": "video",
+          "trackSid": "TR_VCVNr2dKrAC6fc",
+          "rtpTimestamp": 4016328084,
+          "captureTimestamp_raw": null,
+          "hasCaptureTimestamp": false
+        }
+      ],
+      "metrics": {
+        "paired_n": 0,
+        "biases_ms": [],
+        "paired_preview": [],
+        "paired_all": [],
+        "median_bias_ms": null,
+        "mean_bias_ms": null,
+        "abs_median_bias_ms": null,
+        "sync_err_ms": {
+          "available": false,
+          "n": 0,
+          "median": null,
+          "mean": null,
+          "compared_to_eps_40ms": null,
+          "note": "insufficient A+V matched playout marks"
+        },
+        "compared_to_tau_b_10ms": null
+      }
+    }
+  ],
+  "median_bias_ms": null,
+  "mean_bias_ms": null,
+  "abs_median_bias_ms": null,
+  "sync_err_ms": {
+    "available": false,
+    "n": 0,
+    "median": null,
+    "mean": null,
+    "compared_to_eps_40ms": null,
+    "note": "insufficient A+V matched playout marks"
+  },
+  "rtt_ms_neg_control": 0,
+  "compared_to_tau_b_10ms": null,
+  "compared_to_eps_40ms": null,
+  "verdict": "C0_APPARATUS_FAIL",
+  "interpretation": "C0 is a sanity/apparatus cell on stock rewrite — Success means the metrics pipeline works and bias is honestly measured. |bias|≤τ_b=10ms is NOT required under rewrite; τ_b remains the later policy decision threshold. ε=40ms applies to sync_err when A+V available.",
+  "notes": [
+    "C0_PUBLISHER=pion — Chrome subscriber-only; inject log /workspace/paper3/results/rep-2026-10-15b/c3-p80/rewrite/d50/run-5/inject.jsonl; ACT extmap force id=8",
+    "Chromium 151.0.7922.34",
+    "[sub] [m1-c0] ready {version: 2.22.3}",
+    "[sub] [m1-c0] ACT extmap id munge installed {forceId: 8, actUri: http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time}",
+    "pion ACT extmap force id=8",
+    "[sub] connection state changed: disconnected -> connecting {room: , roomID: undefined, participant: , participantID: }",
+    "[sub] signal connected {room: undefined, roomID: undefined, participant: undefined, participantID: undefined}",
+    "[sub] connected to Livekit Server edition: 0, version: 1.13.7, protocol: 17, region: , nodeId: ND_fsDxnyhAgoZy, debugInfo: , agentProtocol: 1 {room: rep-c3-p80-rewrite-d50-r5-1792078807, roomID: RM_vRSARd65FJU6, participant: c0-subscriber, participantID: PA_dSKfXT2V2dtp}",
+    "[sub] connection state changed: connecting -> connected {room: rep-c3-p80-rewrite-d50-r5-1792078807, roomID: RM_vRSARd65FJU6, participant: c0-subscriber, participantID: PA_dSKfXT2V2dtp}",
+    "[sub] [m1-c0] subscriber connected {room: rep-c3-p80-rewrite-d50-r5-1792078807, sid: PA_dSKfXT2V2dtp, serverVersion: 1.13.7}",
+    "subscriber serverVersion=1.13.7",
+    "act_enable {\"localSdpHasAct\":false,\"remoteSdpHasAct\":false,\"notes\":[\"negotiate ok\"]}",
+    "subscribed {\"kind\":\"video\",\"sid\":\"TR_VCVNr2dKrAC6fc\",\"participant\":\"c3-pion-pub-d50\"}",
+    "sampling 16000ms Δ_inject=50 publisher=pion",
+    "pion inject events loaded n=270 from /workspace/paper3/results/rep-2026-10-15b/c3-p80/rewrite/d50/run-5/inject.jsonl"
+  ]
+}

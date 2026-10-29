@@ -1,0 +1,9 @@
+--- C0 verbatim_dsrpt_skew ---
+verdict: C0_BIAS_WITHIN_TAU_B
+delta_inject_ms: 0
+captureTimestamp_seen: true
+paired_n: 234
+median_bias_ms: -1
+abs_median_bias_ms: 1
+compared_to_tau_b_10ms: true
+wrote: /workspace/paper3/results/rep-2026-10-15b/c3-p80/verbatim/d0/run-4/result.json

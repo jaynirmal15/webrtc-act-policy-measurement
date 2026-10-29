@@ -1,0 +1,9 @@
+--- C0 stock_rewrite ---
+verdict: C0_BIAS_WITHIN_TAU_B
+delta_inject_ms: 50
+captureTimestamp_seen: true
+paired_n: 217
+median_bias_ms: 0
+abs_median_bias_ms: 0
+compared_to_tau_b_10ms: true
+wrote: /workspace/paper3/results/rep-2026-10-15b/c0/rewrite/d50/run-1/result.json

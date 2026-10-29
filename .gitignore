@@ -1,0 +1,27 @@
+# LaTeX by-products
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex*
+*.toc
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Build output (binaries and reconstructed upstream sources are not shipped)
+m1-harness/bin/
+m1-harness/third_party/
+m1-harness/out/
+allcells/
+
+# OS / editor
+.DS_Store
+*.swp

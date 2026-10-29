@@ -1,0 +1,9 @@
+{
+"cell":"c0dsrpt","policy":"verbatim","policy_name":"verbatim_dsrpt","pr_4812_applied":true,
+"delta_inject_ms":50,"run":1,"sr_ntp_skew_flag_ms":0,"sr_ntp_estimate_perturbation_ms":0,
+"sr_hold_ms":0,"livekit_binary":"livekit-server-verbatim-dsrpt","livekit_binary_sha256":"628ddfe1c8e301e4da02c5bafea16bbdd9aca8002469669330d166ea30a13f86",
+"publisher_binary_sha256":"0491a4abba9f0e239e02aba46b0e355978bfba67c9e8e76dc6ddd1e1025a4c7e",
+"config":"livekit-verbatim-dsrpt.yaml","act_force_ext_id":8,"room":"rep-c0-dsrpt-verbatim-d50-r1-1792120930","sample_ms":16000,
+"git_sha":"77c326e0b06315743ea4804054e5ce83582d933d","git_dirty":false,
+"started_local":"2026-10-15T23:22:10-04:00"
+}

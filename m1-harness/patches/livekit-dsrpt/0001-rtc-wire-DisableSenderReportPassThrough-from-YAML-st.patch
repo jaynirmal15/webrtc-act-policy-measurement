@@ -1,0 +1,51 @@
+From 2ef6c86fa8a18b3a915e58e6639d056b932938ac Mon Sep 17 00:00:00 2001
+From: Jay Nirmal <jay@local>
+Date: Tue, 29 Sep 2026 12:43:20 -0400
+Subject: [PATCH 1/2] rtc: wire DisableSenderReportPassThrough from YAML
+ (stress cell)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Expose existing ParticipantParams.DisableSenderReportPassThrough via
+rtc.disable_sender_report_pass_through. Stock v1.13.7 never assigned this
+field (always false → Rewrite offset 0). Paper3 M1 DSRPT stress cell needs
+passThrough=false so RTCPSenderReportPropagationDelay is non-zero.
+---
+ pkg/config/config.go       | 7 +++++++
+ pkg/service/roommanager.go | 1 +
+ 2 files changed, 8 insertions(+)
+
+diff --git a/pkg/config/config.go b/pkg/config/config.go
+index 3ca89107..3eb45777 100644
+--- a/pkg/config/config.go
++++ b/pkg/config/config.go
+@@ -186,6 +186,13 @@ type RTCConfig struct {
+ 
+ 	// enable rtp stream restart detection for published tracks
+ 	EnableRTPStreamRestartDetection bool `yaml:"enable_rtp_stream_restart_detection,omitempty"`
++
++	// When true, SFU does not pass RTCP sender reports through unchanged and
++	// RTCPSenderReportPropagationDelay returns a non-zero clock offset used by
++	// abs-capture-time Rewrite. Default false (pass-through → rewrite offset 0).
++	// Apparatus note (Paper3 M1): this field existed as ParticipantParams but was
++	// never wired from YAML on v1.13.7; stress-cell wiring exposes it under rtc:.
++	DisableSenderReportPassThrough bool `yaml:"disable_sender_report_pass_through,omitempty"`
+ }
+ 
+ type TURNServer struct {
+diff --git a/pkg/service/roommanager.go b/pkg/service/roommanager.go
+index e25fae88..b0820e1f 100644
+--- a/pkg/service/roommanager.go
++++ b/pkg/service/roommanager.go
+@@ -543,6 +543,7 @@ func (r *RoomManager) StartSession(
+ 		EnableParticipantDataBlob:         r.config.EnableParticipantDataBlob,
+ 		EnableRTPStreamRestartDetection:   r.config.RTC.EnableRTPStreamRestartDetection,
+ 		EnableWarp:                        enableWarp,
++		DisableSenderReportPassThrough:    r.config.RTC.DisableSenderReportPassThrough,
+ 	})
+ 	if err != nil {
+ 		prometheus.IncrementParticipantRtcCanceled(1, enableWarp)
+-- 
+2.47.3
+

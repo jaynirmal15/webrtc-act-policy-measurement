@@ -1,0 +1,66 @@
+BATCH_START 2026-10-15T23:10:16-04:00
+=== START c0-dsrpt/rewrite/d0/run-1 try=1 2026-10-15T23:10:16-04:00 ===
+c0-dsrpt/rewrite/d0/run-1 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 232 med -1
+=== ELAPSED 45s c0-dsrpt/rewrite/d0/run-1 ===
+=== START c0-dsrpt/rewrite/d0/run-2 try=2 2026-10-15T23:11:01-04:00 ===
+c0-dsrpt/rewrite/d0/run-2 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 208 med -1
+=== ELAPSED 45s c0-dsrpt/rewrite/d0/run-2 ===
+=== START c0-dsrpt/rewrite/d0/run-3 try=3 2026-10-15T23:11:46-04:00 ===
+c0-dsrpt/rewrite/d0/run-3 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 214 med -1
+=== ELAPSED 44s c0-dsrpt/rewrite/d0/run-3 ===
+=== START c0-dsrpt/rewrite/d0/run-4 try=4 2026-10-15T23:12:31-04:00 ===
+c0-dsrpt/rewrite/d0/run-4 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 213 med -1
+=== ELAPSED 44s c0-dsrpt/rewrite/d0/run-4 ===
+=== START c0-dsrpt/rewrite/d0/run-5 try=5 2026-10-15T23:13:15-04:00 ===
+c0-dsrpt/rewrite/d0/run-5 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 215 med -1
+=== ELAPSED 44s c0-dsrpt/rewrite/d0/run-5 ===
+=== START c0-dsrpt/rewrite/d50/run-1 try=1 2026-10-15T23:14:00-04:00 ===
+c0-dsrpt/rewrite/d50/run-1 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 214 med -1
+=== ELAPSED 44s c0-dsrpt/rewrite/d50/run-1 ===
+=== START c0-dsrpt/rewrite/d50/run-2 try=2 2026-10-15T23:14:44-04:00 ===
+c0-dsrpt/rewrite/d50/run-2 rc=2 C0_APPARATUS_FAIL ct_seen false paired 0 med null
+=== ELAPSED 45s c0-dsrpt/rewrite/d50/run-2 ===
+FAILED c0-dsrpt/rewrite/d50 run-2 try 2
+=== START c0-dsrpt/rewrite/d50/run-2 try=3 2026-10-15T23:15:29-04:00 ===
+c0-dsrpt/rewrite/d50/run-2 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 217 med -1
+=== ELAPSED 44s c0-dsrpt/rewrite/d50/run-2 ===
+=== START c0-dsrpt/rewrite/d50/run-3 try=4 2026-10-15T23:16:13-04:00 ===
+c0-dsrpt/rewrite/d50/run-3 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 214 med -1
+=== ELAPSED 45s c0-dsrpt/rewrite/d50/run-3 ===
+=== START c0-dsrpt/rewrite/d50/run-4 try=5 2026-10-15T23:16:58-04:00 ===
+c0-dsrpt/rewrite/d50/run-4 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 215 med -1
+=== ELAPSED 44s c0-dsrpt/rewrite/d50/run-4 ===
+=== START c0-dsrpt/rewrite/d50/run-5 try=6 2026-10-15T23:17:43-04:00 ===
+c0-dsrpt/rewrite/d50/run-5 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 216 med -1
+=== ELAPSED 44s c0-dsrpt/rewrite/d50/run-5 ===
+=== START c0-dsrpt/verbatim/d0/run-1 try=1 2026-10-15T23:18:27-04:00 ===
+c0-dsrpt/verbatim/d0/run-1 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 227 med 0
+=== ELAPSED 45s c0-dsrpt/verbatim/d0/run-1 ===
+=== START c0-dsrpt/verbatim/d0/run-2 try=2 2026-10-15T23:19:12-04:00 ===
+c0-dsrpt/verbatim/d0/run-2 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 232 med 0
+=== ELAPSED 44s c0-dsrpt/verbatim/d0/run-2 ===
+=== START c0-dsrpt/verbatim/d0/run-3 try=3 2026-10-15T23:19:56-04:00 ===
+c0-dsrpt/verbatim/d0/run-3 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 227 med 0
+=== ELAPSED 45s c0-dsrpt/verbatim/d0/run-3 ===
+=== START c0-dsrpt/verbatim/d0/run-4 try=4 2026-10-15T23:20:41-04:00 ===
+c0-dsrpt/verbatim/d0/run-4 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 229 med -1
+=== ELAPSED 45s c0-dsrpt/verbatim/d0/run-4 ===
+=== START c0-dsrpt/verbatim/d0/run-5 try=5 2026-10-15T23:21:26-04:00 ===
+c0-dsrpt/verbatim/d0/run-5 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 228 med -1
+=== ELAPSED 44s c0-dsrpt/verbatim/d0/run-5 ===
+=== START c0-dsrpt/verbatim/d50/run-1 try=1 2026-10-15T23:22:10-04:00 ===
+c0-dsrpt/verbatim/d50/run-1 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 227 med 0
+=== ELAPSED 45s c0-dsrpt/verbatim/d50/run-1 ===
+=== START c0-dsrpt/verbatim/d50/run-2 try=2 2026-10-15T23:22:55-04:00 ===
+c0-dsrpt/verbatim/d50/run-2 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 232 med -1
+=== ELAPSED 44s c0-dsrpt/verbatim/d50/run-2 ===
+=== START c0-dsrpt/verbatim/d50/run-3 try=3 2026-10-15T23:23:40-04:00 ===
+c0-dsrpt/verbatim/d50/run-3 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 229 med 0
+=== ELAPSED 44s c0-dsrpt/verbatim/d50/run-3 ===
+=== START c0-dsrpt/verbatim/d50/run-4 try=4 2026-10-15T23:24:24-04:00 ===
+c0-dsrpt/verbatim/d50/run-4 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 227 med 0
+=== ELAPSED 45s c0-dsrpt/verbatim/d50/run-4 ===
+=== START c0-dsrpt/verbatim/d50/run-5 try=5 2026-10-15T23:25:09-04:00 ===
+c0-dsrpt/verbatim/d50/run-5 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 229 med -1
+=== ELAPSED 44s c0-dsrpt/verbatim/d50/run-5 ===
+BATCH_DONE start=2026-10-15T23:10:16-04:00 end=2026-10-15T23:25:53-04:00

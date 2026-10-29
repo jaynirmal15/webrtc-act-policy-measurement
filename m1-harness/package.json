@@ -1,0 +1,22 @@
+{
+  "name": "m1-act-day1-harness",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Paper 3 M1 Day-1 ACT gate + C0 bias + C1/C3 A/V + C2/C4 delayed-SR (LiveKit v1.13.7 + Playwright)",
+  "scripts": {
+    "day1": "node src/day1-gate.mjs",
+    "gate": "node src/day1-gate.mjs",
+    "c0": "node src/c0-rewrite-sanity.mjs",
+    "c1": "node src/c1-av-sync.mjs",
+    "c2": "node src/c2-delayed-sr.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "livekit-client": "2.22.3",
+    "livekit-server-sdk": "2.13.3",
+    "playwright": "1.62.1"
+  }
+}

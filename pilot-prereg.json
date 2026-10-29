@@ -1,0 +1,103 @@
+{
+  "document": "M1 ACT pilot pre-registration",
+  "created_at_et": "2026-09-17",
+  "status": "LOCKED \u2014 \u03b5 and \u03c4_b set; comparison cells may proceed after Day-0/Day-1 gates",
+  "research_question": "Under what SFU ACT policies (strip; rewrite-to-SFU-clock after SR; verbatim) do E2E capture-to-playout estimators remain unbiased while keeping cross-track A/V sync within a bound \u03b5 fixed before measurement?",
+  "pins_ref": "m1-act-pins.json",
+  "plan_ref": "m1-act-pilot-plan.md",
+  "livekit_pin": {
+    "tag": "v1.13.7",
+    "sha": "8d11efdfcd4220092b6ac7b8a21af28526da5a6b"
+  },
+  "application_class": "conversational_lip_sync",
+  "sync_bound_epsilon": {
+    "symbol": "\u03b5",
+    "value_ms": 40,
+    "definition": "Decision uses |sync_err| \u2264 \u03b5_ms. sync_err is the signed cross-track A/V capture-time difference at matched playout marks (formula frozen below).",
+    "jay_choice": "2026-09-17: conversational lip-sync guidance (~\u00b140 ms class)",
+    "citation_primary": {
+      "id": "ITU-R BT.1359-1",
+      "title": "Relative timing of sound and vision for broadcasting",
+      "year": 1998,
+      "url": "https://www.itu.int/rec/R-REC-BT.1359/en",
+      "pdf": "https://www.itu.int/dms_pubrec/itu-r/rec/bt/R-REC-BT.1359-1-199811-I!!PDF-E.pdf",
+      "notes": "Detectability thresholds about +45 ms to \u2212125 ms (positive = sound advanced w.r.t. vision). Acceptability about +90 ms to \u2212185 ms. Asymmetric \u2014 not a symmetric \u00b140 ms band."
+    },
+    "citation_supporting": [
+      {
+        "id": "EBU R37-2007",
+        "notes": "Often summarized as about +40 ms / \u221260 ms at output feeding transmitters (see NAB lip-sync overview citing EBU R37)."
+      },
+      {
+        "id": "NAB Lip Sync Revisited (2009 overview)",
+        "url": "http://www.nab.org/xert/scitech/pdfs/tv100509.pdf",
+        "notes": "Summarizes ITU detectability and compares ATSC/EBU distribution tolerances."
+      }
+    ],
+    "justification": "Jay selected the conversational lip-sync (~\u00b140 ms) class. Pilot adopts a conservative symmetric research bound |sync_err| \u2264 40 ms, near ITU-R BT.1359-1 sound-lead detectability (~+45 ms) and in the same class as EBU R37\u2019s +40 ms audio-early figure. Full ITU asymmetry is recorded; we do not pretend BT.1359 states \u00b140 ms.",
+    "locked": true,
+    "locked_at_et": "2026-09-17",
+    "may_not_change_after_first_comparison_cell": true
+  },
+  "latency_bias_tolerance": {
+    "symbol": "\u03c4_b",
+    "value_ms": 10,
+    "status": "LOCKED",
+    "definition": "Tolerance on |b| where b = L\u0302 \u2212 L*. L\u0302 = t_playout_wall \u2212 t_capture_from_ACT (or ACT-extrapolated). L* = t_playout_wall \u2212 (t_inject_wall \u2212 \u0394_inject) with known publisher inject delay \u0394_inject.",
+    "sla_sentence": "Observability must stay within 10 ms of true capture\u2192playout latency.",
+    "jay_choice": "2026-09-17: Set \u03c4_b = 10 ms \u2014 observability must stay within 10 ms of true capture\u2192playout",
+    "locked": true,
+    "locked_at_et": "2026-09-17",
+    "may_not_change_after_first_comparison_cell": true
+  },
+  "metric_formulas_frozen": {
+    "sync_err": "At matched playout marks for audio and video: sync_err_ms = (t_capture_audio \u2212 t_capture_video) in ms. Prefer ACT-derived capture times when present; if a track lacks ACT, mark cell apparatus_partial and do not invent substitutes for the primary sync metric.",
+    "latency_estimate_Lhat": "L\u0302_ms = (t_playout_wall \u2212 t_capture_from_ACT) in ms, same playout-mark definition across policies.",
+    "latency_truth_Lstar": "L*_ms = (t_playout_wall \u2212 (t_inject_wall \u2212 \u0394_inject_ms)) in ms.",
+    "bias_b": "b_ms = L\u0302_ms \u2212 L*_ms (signed). Primary summary: median b over the fixed analysis window; also report |b|.",
+    "negative_control": "getStats RTT / candidate-pair RTT collected every trial; MUST NOT be used as L\u0302 or to set \u03c4_b."
+  },
+  "decision_rule_preregistered": {
+    "status": "LOCKED",
+    "epsilon_ms": 40,
+    "tau_b_ms": 10,
+    "tradeoff_positive_if": "(|b_rewrite| > 10 ms) OR (|sync_err_verbatim| > 40 ms) under any required completed cell C1\u2013C4 (or both). That is the publishable tension.",
+    "prefer_rewrite_if": "|b_rewrite| \u2264 10 ms AND |sync_err_rewrite| \u2264 40 ms when both tracks measurable",
+    "prefer_verbatim_if": "|b_verbatim| \u2264 10 ms AND |sync_err_verbatim| \u2264 40 ms",
+    "one_line_boolean": "GO trade-off = rewrite_bias_exceeds_10ms OR verbatim_sync_exceeds_40ms; else NEGATIVE/INCONCLUSIVE per plan outcome vocabulary; apparatus failures classified separately.",
+    "locked_at_et": "2026-09-17",
+    "may_not_change_after_first_comparison_cell": true
+  },
+  "required_cells_before_go_nogo": [
+    "C0",
+    "C1",
+    "C2",
+    "C3",
+    "C4"
+  ],
+  "strip_cells": [
+    "C5"
+  ],
+  "optional_cells": [
+    "C6",
+    "C7"
+  ],
+  "out_of_scope_required_pilot": [
+    "C8_dual_mode"
+  ],
+  "stop_conditions": [
+    "ACT not negotiated or not exposed on Chrome/LiveKit path (apparatus failure)",
+    "Cannot establish independent L* ground truth (apparatus failure)",
+    "Tip/path removes SR-gate+Rewrite before pin frozen in trial JSON (re-pin or stop)",
+    "Only directional rewrite\u2260capture-time with no joint (bias, sync) metric path (apparatus / novelty trap \u2014 stop)"
+  ],
+  "outcome_vocabulary": [
+    "positive",
+    "negative",
+    "inconclusive",
+    "apparatus_failure"
+  ],
+  "contribution_trap_avoidance": "Landing or cherry-picking PR #4812 is apparatus, not the paper claim. Pilot claim requires pre-registered \u03b5/\u03c4_b and joint metrics across policies.",
+  "prereg_complete": true,
+  "next_gate": "Day 0 pin freeze + Day 1 ACT negotiation/exposure on LiveKit v1.13.7 before any rewrite-vs-verbatim comparison"
+}

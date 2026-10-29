@@ -1,0 +1,20 @@
+# LiveKit config for M1 C0 VERBATIM policy cell.
+# Requires binary built from PR #4812 historical flag commit cherry-picked onto v1.13.7 pin
+# (bin/livekit-server-verbatim). Stock rewrite cells must NOT use this file.
+port: 7880
+bind_addresses:
+  - 127.0.0.1
+rtc:
+  tcp_port: 7881
+  port_range_start: 50000
+  port_range_end: 50100
+  use_external_ip: false
+  # PR #4812 historical opt-in (4a17f47f) — skip SR-gate + Rewrite
+  forward_abs_capture_time_verbatim: true
+keys:
+  devkey: secret
+logging:
+  level: info
+  pion_level: warn
+room:
+  auto_create: true

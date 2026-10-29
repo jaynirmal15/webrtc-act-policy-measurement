@@ -1,0 +1,9 @@
+--- C0 rewrite_dsrpt ---
+verdict: C0_APPARATUS_FAIL
+delta_inject_ms: 50
+captureTimestamp_seen: false
+paired_n: 0
+median_bias_ms: null
+abs_median_bias_ms: null
+compared_to_tau_b_10ms: null
+wrote: /workspace/paper3/results/rep-2026-10-15-c0-dsrpt/c0-dsrpt/rewrite/d50/run-2/result.json
