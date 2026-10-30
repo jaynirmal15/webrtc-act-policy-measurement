@@ -43,7 +43,7 @@ for f in results/rep-2026-10-15b/_failed/* results/rep-2026-10-15-c0-dsrpt/_fail
 python3 analysis/rtp-match-v1-c0-dsrpt/rtp_rematch.py allcells
 ```
 
-These recompute per-run and pooled bias with the corrected RTP-timestamp matcher. They also reproduce the superseded nearest-ACT matcher alongside for comparison. Each script writes into its own directory and overwrites the shipped outputs, so use `git diff` afterwards to compare. Both runs were checked from a clean copy of this tree: `summary.md`, `per_run.json` and `observations.json` came out byte-identical, and `summary.json` differed only in its recorded `source` path. `results/rep-2026-10-15b/summary.{json,md}` hold the original (superseded) replication summary.
+These recompute per-run and pooled bias with the corrected RTP-timestamp matcher. They also reproduce the superseded nearest-ACT matcher alongside for comparison. Each script writes into its own directory and overwrites the shipped outputs, so use `git diff` afterwards to compare. Both runs were checked from a clean copy of this tree: `summary.md`, `per_run.json` and `observations.json` came out byte-identical, and `summary.json` differed only in its recorded `source` path. `results/rep-2026-10-15b/summary.{json,md}` hold the original (superseded) replication summary. `analyze_rep.py` produced them. Its input path is hardcoded to `/workspace/paper3/results/rep-2026-10-15b`, so edit `R` before re-running it; `summary.md` then reproduces byte-for-byte, and `summary.json` differs only in its `source` field.
 
 ## Dependencies
 
