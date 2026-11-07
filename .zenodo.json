@@ -8,7 +8,7 @@
       "affiliation": "Meazure Learning"
     }
   ],
-  "description": "Measurement harness, pre-registration, raw replication data, and analysis scripts for a controlled comparison of Absolute Capture Time (ACT) forwarding policies, rewrite versus verbatim, on a pinned LiveKit SFU. Contains the run scripts and patch series, the pre-registration and its addenda, per-run and per-observation raw JSON for 80 retained replication runs and 20 C0-DSRPT runs with failed attempts retained, and both the superseded and corrected frame-matching analyses. Harness code is licensed Apache-2.0; results and analysis outputs are licensed CC-BY-4.0. The manuscript is not included in this deposit.",
+  "description": "Measurement harness, pre-registrations, raw data, and analysis scripts for controlled comparisons of Absolute Capture Time (ACT) forwarding policies, rewrite versus verbatim, on a pinned LiveKit SFU. Contains the run scripts and patch series; four pre-registration documents; per-run and per-observation raw JSON for 80 retained replication runs, 20 C0-DSRPT runs, 20 registered mid-session onset runs, 6 exploratory calibration runs and 10 apparatus-reproduction runs, with failed attempts retained; and both the superseded and corrected frame-matching analyses. Harness code is licensed Apache-2.0; results and analysis outputs are licensed CC-BY-4.0. The manuscript is not included in this deposit.",
   "license": "Apache-2.0",
   "access_right": "open",
   "keywords": ["WebRTC", "SFU", "RTP header extension", "Absolute Capture Time", "LiveKit", "clock synchronization", "measurement", "reproducibility"]

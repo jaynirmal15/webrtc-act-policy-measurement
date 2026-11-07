@@ -20,10 +20,13 @@ It measures capture-time bias and timestamp availability under clean and deliber
 | C2 | Timestamp availability before the first Sender Report | `results/rep-2026-10-15b/c2/` | `analysis/rtp-match-v1/` |
 | C3 (±80 ms) | Bias under an SR-NTP skew of −80 / +80 ms | `results/rep-2026-10-15b/c3-m80/`, `c3-p80/` | `analysis/rtp-match-v1/` |
 | C0-DSRPT | C0 with sender-report pass-through disabled | `results/rep-2026-10-15-c0-dsrpt/` | `analysis/rtp-match-v1-c0-dsrpt/` |
+| C3-ONSET (registered) | Response to an SR-NTP shift of −80 / +80 ms that begins mid-session (first SR after 20 s) | `results/midsession-reg-2026-11-05/` | `analysis/midsession-reg-2026-11-05/` |
+| Onset calibration (exploratory) | Onset time and thresholds for the mid-session registration; not reported as results | `results/explore-2026-11-05-onset/` | `CALIBRATION-ANALYSIS.json` in the same directory |
+| Apparatus reproduction | C3 −80 ms, Δ=0, both policies, re-run with the deposited binaries to check the restored apparatus | `results/repro-2026-11-05/` | `analysis/rtp-match-v1-repro-2026-11-05/` |
 
-Each cell has 5 independent runs per policy and per delay (`d0`, `d50`). Every attempt is kept: failed attempts are under `_failed/`, and each `run-index.log` lists them all (83 attempts for 80 retained runs in `rep-2026-10-15b`; 21 for 20 in `rep-2026-10-15-c0-dsrpt`). C1 (A/V sync) exists only as a historical single-run summary and has no raw data here. See `MANIFEST.md` for the full inventory and for data that cannot be recovered.
+Each October cell has 5 independent runs per policy and per delay (`d0`, `d50`). The registered mid-session batch has 5 runs per sign and policy at Δ=0 only (20 attempts, 20 retained); the calibration runs are rewrite only, 3 per sign; the reproduction has 5 runs per policy. Every attempt is kept: failed attempts are under `_failed/`, and each `run-index.log` lists them all (83 attempts for 80 retained runs in `rep-2026-10-15b`; 21 for 20 in `rep-2026-10-15-c0-dsrpt`). C1 (A/V sync) exists only as a historical single-run summary and has no raw data here. See `MANIFEST.md` for the full inventory and for data that cannot be recovered.
 
-The pre-registration is `pilot-prereg.json`, `replication-prereg-addendum.md` and `c0-dsrpt-prereg-addendum.md`.
+The pre-registration is `pilot-prereg.json`, `replication-prereg-addendum.md`, `c0-dsrpt-prereg-addendum.md` and `midsession-prereg-addendum.md`.
 
 ### Raw `result.json` values are not the paper's numbers
 
@@ -31,7 +34,7 @@ Each run's `result.json` (and its copy `trial-d0.json`) records bias as the harn
 
 ### "post-review" in the analysis outputs
 
-The `status` field of `summary.json`, and the first line of `summary.md` and `run_output.txt`, in `analysis/rtp-match-v1/`, `analysis/rtp-match-v1-c0-dsrpt/` and `analysis/rtp-match-v1-repro-2026-11-05/` read "post-review analysis correction". The scripts' docstrings, `MANIFEST.md` and `c0-dsrpt-prereg-addendum.md` use the same phrase. It refers to an internal audit of the frame-matching procedure after the replication batch, not to peer review. The strings are left unchanged because regenerating them would alter every output hash.
+The `status` field of `summary.json`, and the first line of `summary.md` and `run_output.txt`, in `analysis/rtp-match-v1/`, `analysis/rtp-match-v1-c0-dsrpt/` and `analysis/rtp-match-v1-repro-2026-11-05/` read "post-review analysis correction". The scripts' docstrings and `c0-dsrpt-prereg-addendum.md` use the same phrase. It refers to an internal audit of the frame-matching procedure after the replication batch, not to peer review. The strings are left unchanged because regenerating them would alter every output hash.
 
 ### Re-running the analysis (no SFU needed)
 
@@ -76,16 +79,22 @@ The binaries and browser are not shipped. These are the versions used:
 cd m1-harness
 npm ci
 npx playwright install chromium
+sudo npx playwright install-deps chromium
+cd ..
 ```
+
+`install-deps` installs the operating-system libraries Chromium needs (it calls the system package manager, so it needs root). Without them Chromium does not launch, failing on a missing shared library such as `libglib-2.0.so.0`. The remaining steps run from the repository root.
 
 ### 2. LiveKit binaries (four variants)
 
-Each series applies with `git am` onto the pinned upstream commit:
+Each series applies with `git am` onto the pinned upstream commit. Run this from the repository root: the `../m1-harness` paths assume `livekit-src` sits beside `m1-harness`. `git am` creates commits, so on a fresh machine configure a git identity in the clone first; without one it stops with "unable to auto-detect email address". The resulting tree hashes, which can be checked with `git rev-parse HEAD^{tree}`, are listed in `m1-harness/patches/README.md`.
 
 ```bash
 git clone https://github.com/livekit/livekit.git livekit-src
 cd livekit-src
 git checkout 8d11efdfcd4220092b6ac7b8a21af28526da5a6b
+git config user.name "Your Name"        # git am needs an identity
+git config user.email "you@example.com"
 
 # stock (rewrite) binary: no patches
 go build -o ../m1-harness/bin/livekit-server ./cmd/server
@@ -109,17 +118,27 @@ done
 
 ### 3. Pion publisher (patched server-sdk-go)
 
-`pion-publisher/go.mod` points at a local copy of server-sdk-go with `replace github.com/livekit/server-sdk-go/v2 => ../third_party/server-sdk-go`. That copy is not shipped. server-sdk-go comes from the Go module cache rather than a git checkout, so its patch is applied with `git apply`:
+`pion-publisher/go.mod` points at a local copy of server-sdk-go with `replace github.com/livekit/server-sdk-go/v2 => ../third_party/server-sdk-go`. That copy is not shipped. server-sdk-go comes from the Go module cache rather than a git checkout, so its patch is applied with `git apply`, from the repository root:
 
 ```bash
-cd m1-harness
 go mod download github.com/livekit/server-sdk-go/v2@v2.12.8
-mkdir -p third_party
-cp -r "$(go env GOMODCACHE)/github.com/livekit/server-sdk-go/v2@v2.12.8" third_party/server-sdk-go
-chmod -R u+w third_party/server-sdk-go
-(cd third_party/server-sdk-go && git apply ../../patches/server-sdk-go/*.patch)
-(cd pion-publisher && go build -o ../bin/c3-pion-publisher .)
+mkdir -p m1-harness/third_party
+cp -r "$(go env GOMODCACHE)/github.com/livekit/server-sdk-go/v2@v2.12.8" m1-harness/third_party/server-sdk-go
+chmod -R u+w m1-harness/third_party/server-sdk-go
+git apply --directory=m1-harness/third_party/server-sdk-go m1-harness/patches/server-sdk-go/*.patch
+test -f m1-harness/third_party/server-sdk-go/transport.go.patch-note && echo "server-sdk-go patch applied"
+(cd m1-harness/pion-publisher && go build -o ../bin/c3-pion-publisher .)
 ```
+
+The `test -f` check is required. The form given in v1.0.0, `(cd third_party/server-sdk-go && git apply ../../patches/server-sdk-go/*.patch)`, exits 0 and applies nothing: `third_party/` lies inside this repository's git working tree, so `git apply` resolves the patch paths against the repository root and skips them silently. The publisher then builds without the patch, with no error.
+
+For the mid-session runs (`midsession-reg-run-one.sh`, `explore-onset-run-one.sh`), apply the onset series to the publisher source before building:
+
+```bash
+git apply --directory=m1-harness/pion-publisher m1-harness/patches/pion-publisher/*.patch
+```
+
+It adds `-sr-ntp-skew-onset-ms`; the default 0 keeps the constant-offset behaviour of the October runs, which used the publisher without this series. Both new patch series use bare file paths, so `--directory` is required (see `m1-harness/patches/README.md`).
 
 ### 4. Video fixture
 
@@ -148,7 +167,7 @@ One replication run (a fresh SFU, publisher and subscriber):
 m1-harness/scripts/rep-run-one.sh <c0|c2|c3|c0dsrpt> <rewrite|verbatim> <delta_ms> <run_k> [m80|p80]
 ```
 
-The batch drivers are `rep-batch-b.sh` (C0/C2/C3) and `rep-batch-c0-dsrpt.sh`. `run-*.sh` are the original per-cell pilot scripts. The script refuses to overwrite an existing run directory. Set `REP_SET` to write runs to a new results directory instead of `rep-2026-10-15b`. The subscriber applies the ACT extension-ID workaround with `C0_ACT_FORCE_EXT_ID=8`, which is the default in `c0-rewrite-sanity.mjs`.
+The batch drivers are `rep-batch-b.sh` (C0/C2/C3) and `rep-batch-c0-dsrpt.sh`. Mid-session runs use `midsession-reg-run-one.sh <ntp_m80|ntp_p80> <rewrite|verbatim> <run_k>` (registered batch) and `explore-onset-run-one.sh <m80|p80> <run_k>` (calibration), with the onset-patched publisher. `run-*.sh` are the original per-cell pilot scripts. The script refuses to overwrite an existing run directory. Set `REP_SET` to write runs to a new results directory instead of `rep-2026-10-15b`. The subscriber applies the ACT extension-ID workaround with `C0_ACT_FORCE_EXT_ID=8`, which is the default in `c0-rewrite-sanity.mjs`.
 
 ## What the scripts need that is not in this repository
 
