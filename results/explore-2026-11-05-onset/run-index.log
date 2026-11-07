@@ -1,0 +1,14 @@
+=== EXPLORATORY CALIBRATION START 2026-11-05T22:06:25-05:00 ===
+=== m80 run 1 ===
+{"exploratory":true,"tag":"c3-m80-onset20000","run":1,"rc":0,"verdict":"C0_BIAS_WITHIN_TAU_B","captureTimestamp_seen":true,"paired_n":875,"median_bias_ms_raw":-1,"first_frame_unix_ms":1793934387315,"first_modified_sr_unix_ms":1793934408273,"onset_sr_index":21,"skewed_count":24,"unmodified_count":20,"sr_seen":44,"onset_delay_ms":20000,"skew_ms":80,"onset_lag_ms":20958}
+=== m80 run 2 ===
+{"exploratory":true,"tag":"c3-m80-onset20000","run":2,"rc":0,"verdict":"C0_BIAS_WITHIN_TAU_B","captureTimestamp_seen":true,"paired_n":869,"median_bias_ms_raw":-1,"first_frame_unix_ms":1793934458188,"first_modified_sr_unix_ms":1793934479148,"onset_sr_index":21,"skewed_count":23,"unmodified_count":20,"sr_seen":43,"onset_delay_ms":20000,"skew_ms":80,"onset_lag_ms":20960}
+=== m80 run 3 ===
+{"exploratory":true,"tag":"c3-m80-onset20000","run":3,"rc":0,"verdict":"C0_BIAS_WITHIN_TAU_B","captureTimestamp_seen":true,"paired_n":867,"median_bias_ms_raw":-1,"first_frame_unix_ms":1793934528782,"first_modified_sr_unix_ms":1793934549744,"onset_sr_index":21,"skewed_count":23,"unmodified_count":20,"sr_seen":43,"onset_delay_ms":20000,"skew_ms":80,"onset_lag_ms":20962}
+=== p80 run 1 ===
+{"exploratory":true,"tag":"c3-p80-onset20000","run":1,"rc":0,"verdict":"C0_BIAS_EXCEEDS_TAU_B","captureTimestamp_seen":true,"paired_n":869,"median_bias_ms_raw":13,"first_frame_unix_ms":1793934599433,"first_modified_sr_unix_ms":1793934620391,"onset_sr_index":21,"skewed_count":23,"unmodified_count":20,"sr_seen":43,"onset_delay_ms":20000,"skew_ms":-80,"onset_lag_ms":20958}
+=== p80 run 2 ===
+{"exploratory":true,"tag":"c3-p80-onset20000","run":2,"rc":0,"verdict":"C0_BIAS_EXCEEDS_TAU_B","captureTimestamp_seen":true,"paired_n":867,"median_bias_ms_raw":13,"first_frame_unix_ms":1793934670136,"first_modified_sr_unix_ms":1793934691029,"onset_sr_index":21,"skewed_count":23,"unmodified_count":20,"sr_seen":43,"onset_delay_ms":20000,"skew_ms":-80,"onset_lag_ms":20893}
+=== p80 run 3 ===
+{"exploratory":true,"tag":"c3-p80-onset20000","run":3,"rc":0,"verdict":"C0_BIAS_EXCEEDS_TAU_B","captureTimestamp_seen":true,"paired_n":869,"median_bias_ms_raw":13,"first_frame_unix_ms":1793934740656,"first_modified_sr_unix_ms":1793934761616,"onset_sr_index":21,"skewed_count":23,"unmodified_count":20,"sr_seen":43,"onset_delay_ms":20000,"skew_ms":-80,"onset_lag_ms":20960}
+=== DONE 2026-11-05T22:13:29-05:00 ===

@@ -1,0 +1,17 @@
+pion-publisher host=ws://127.0.0.1:7880 room=midsess-ntp-m80-rewrite-r5-1793939430 delta_inject_ms=0 av_offset_ms=0 stagger_start_ms=0 sr_hold_ms=0 sr_ntp_skew_ms=80 sr_ntp_skew_onset_ms=20000 video=/workspace/paper3/m1-harness/media/c0-video.ivf audio= inject_log=/workspace/paper3/results/midsession-reg-2026-11-05/ntp-m80/rewrite/d0/run-5/inject.jsonl
+2026/11/05 23:30:31 "level"=0 "msg"="published track" "name"="c2-video" "source"="CAMERA" "trackID"="TR_VCb8F6GsE6YKC7"
+published video track
+act-interceptor BindLocalStream ssrc=2200403754 mime=video/VP8 actID=5 exts=4 av_offset_ms=0
+act-interceptor: first frame wall_ms=1793939431859 mime=video/VP8 ssrc=2200403754
+sr-ntp-skew: SR#1 UNMODIFIED (onset_ms=20000 first_frame=1793939431859 now=1793939432819)
+2026/11/05 23:30:33 "level"=0 "msg"="handling subscribed quality update" "isLocal"=true "trackID"="TR_VCb8F6GsE6YKC7" "mime"="" "subscribedQualityUpdate"={}
+2026/11/05 23:30:33 "level"=0 "msg"="subscriber requested backup codec but no track found" "isLocal"=true "trackID"="TR_VCb8F6GsE6YKC7" "codec"="vp8"
+sr-ntp-skew: SR#2 UNMODIFIED (onset_ms=20000 first_frame=1793939431859 now=1793939433819)
+ACT negotiated on sender kind=video id=5 uri=http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time
+local SDP contains ACT URI
+sr-ntp-skew: SR#3 UNMODIFIED (onset_ms=20000 first_frame=1793939431859 now=1793939434819)
+sr-ntp-skew: ONSET first modified SR#21 skew_ms=80 onset_delay_ms=20000 first_frame_unix_ms=1793939431859 (before=0xee97d67cd1a25fff after=0xee97d67cbd277eb8)
+sr-ntp-skew: count=1 sr_index=21 skew_ms=80 ntp_before=0xee97d67cd1a25fff ntp_after=0xee97d67cbd277eb8
+sr-ntp-skew: count=2 sr_index=22 skew_ms=80 ntp_before=0xee97d67dd1af87ff ntp_after=0xee97d67dbd34a6b8
+sr-ntp-skew: count=3 sr_index=23 skew_ms=80 ntp_before=0xee97d67ed1d4afff ntp_after=0xee97d67ebd59ceb8
+publisher done sr_held=0 sr_released=0 first_held=0 first_released=0 sr_ntp_skew_ms=80 sr_ntp_skewed=23

@@ -1,0 +1,209 @@
+{
+ "analysis_version": "rtp-match-v1",
+ "status": "post-review analysis correction applied to existing data; NOT the preregistered matcher",
+ "source": "/workspace/paper3/results/repro-2026-11-05",
+ "tau_b_ms": 10,
+ "bootstrap": {
+  "resamples": 10000,
+  "seed": 20261015
+ },
+ "conditions": {
+  "c3-m80/rewrite/d0": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     -81.0,
+     -81.0,
+     -81.0,
+     -81.0,
+     -81.0
+    ],
+    "per_run_n": [
+     217,
+     214,
+     216,
+     217,
+     212
+    ],
+    "pooled_median": -81.0,
+    "pooled_n": 1076,
+    "IQR": [
+     -81.0,
+     -80.0
+    ],
+    "p5_p95": [
+     -81.0,
+     -80.0
+    ],
+    "min_max": [
+     -81.0,
+     -80.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -81.0,
+     -81.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     -15.0,
+     -15.0,
+     -15.0,
+     -15.0,
+     -14.0
+    ],
+    "per_run_n": [
+     217,
+     214,
+     216,
+     217,
+     212
+    ],
+    "pooled_median": -15.0,
+    "pooled_n": 1076,
+    "IQR": [
+     -15.0,
+     -14.0
+    ],
+    "p5_p95": [
+     -16.0,
+     -14.0
+    ],
+    "min_max": [
+     -19.0,
+     -11.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -15.0,
+     -14.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": -44.0
+  },
+  "c3-m80/verbatim/d0": {
+   "runs": 5,
+   "bias_rtp_match_v1": {
+    "per_run_medians": [
+     0.0,
+     -1.0,
+     -1.0,
+     -1.0,
+     -1.0
+    ],
+    "per_run_n": [
+     227,
+     229,
+     229,
+     227,
+     227
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 1139,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "bias_superseded_act_nearest": {
+    "per_run_medians": [
+     0.0,
+     -1.0,
+     -1.0,
+     -1.0,
+     -1.0
+    ],
+    "per_run_n": [
+     227,
+     229,
+     229,
+     227,
+     227
+    ],
+    "pooled_median": -1.0,
+    "pooled_n": 1139,
+    "IQR": [
+     -1.0,
+     0.0
+    ],
+    "p5_p95": [
+     -1.0,
+     0.0
+    ],
+    "min_max": [
+     -1.0,
+     0.0
+    ],
+    "boot95_CI_median_of_run_medians": [
+     -1.0,
+     0.0
+    ]
+   },
+   "latency_playout_minus_inject_rtp_med": 22.0,
+   "latency_old_med": 22.0
+  }
+ },
+ "decision": {
+  "per_delta_fires": {
+   "d0": true
+  },
+  "bias_arm_fires": true
+ },
+ "direction": {
+  "per_delta": {
+   "d0": {
+    "rewrite_m80": -81.0,
+    "rewrite_p80": null,
+    "opposite_signs": null,
+    "cis_exclude_0": true,
+    "note": "p80 not in this input set",
+    "verbatim_abs_le_2": true,
+    "supported": null
+   }
+  },
+  "supported": null
+ },
+ "conversion_branches": {
+  "c3-m80|rewrite|A:ct>wall+Y -> ct-NTP": 1076,
+  "c3-m80|verbatim|A:ct>wall+Y -> ct-NTP": 1139
+ },
+ "examples": {
+  "c3-m80": {
+   "run": "c3-m80/rewrite/d0/run-1",
+   "sample_source": "rvfc",
+   "t_playout_wall_ms": 1793932833526,
+   "sub_rtpTimestamp": 2121038676,
+   "sub_captureTimestamp_raw": 4002921633588,
+   "ACT_unix_ms": 1793932833588,
+   "conv_branch": "A:ct>wall+Y -> ct-NTP",
+   "rtp_record": {
+    "line": 137,
+    "rtp": 2121038676,
+    "t_inject_wall_ms": 1793932833507,
+    "capture_unix_ms": 1793932833507,
+    "bias": -81
+   },
+   "old_record": {
+    "line": 138,
+    "rtp": 2121044616,
+    "t_inject_wall_ms": 1793932833574,
+    "capture_unix_ms": 1793932833574,
+    "bias": -14
+   },
+   "old_minus_rtp_capture_ms": 67
+  }
+ },
+ "failed_runs_not_pooled": []
+}

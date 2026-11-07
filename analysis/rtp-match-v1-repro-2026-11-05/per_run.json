@@ -1,0 +1,410 @@
+[
+ {
+  "run": "c3-m80/rewrite/d0/run-1",
+  "video_ssrcs": [
+   2876486663
+  ],
+  "subscriber_video_trackSids": [
+   "TR_VC64G7QVtpguo5"
+  ],
+  "inject_frames": 269,
+  "duplicate_rtp_keys": 0,
+  "rtp_increments": {
+   "5940": 268
+  },
+  "rtp_wraps": 0,
+  "eligible": 217,
+  "uniquely_matched": 217,
+  "unmatched": 0,
+  "ambiguous": 0,
+  "distinct_frames_observed": 131,
+  "repeated_observations": 86,
+  "max_obs_per_frame": 2,
+  "old_reproduces_stored_biases": true,
+  "frame_shift_rtp_minus_old": {
+   "-1": 217
+  },
+  "median_old": -15.0,
+  "median_new_dedup_first_obs": -81.0,
+  "median_new": -81.0,
+  "cadence": {
+   "capture_diff_mean": 66.00373134328358,
+   "capture_diff_counts": {
+    "67": 91,
+    "66": 87,
+    "65": 90
+   },
+   "wall_diff_mean": 66.00373134328358
+  },
+  "latency_rtp_med": 22.0,
+  "latency_old_med": -44.0
+ },
+ {
+  "run": "c3-m80/rewrite/d0/run-2",
+  "video_ssrcs": [
+   3600210683
+  ],
+  "subscriber_video_trackSids": [
+   "TR_VCMYJtNYpQanGj"
+  ],
+  "inject_frames": 269,
+  "duplicate_rtp_keys": 0,
+  "rtp_increments": {
+   "5940": 268
+  },
+  "rtp_wraps": 0,
+  "eligible": 214,
+  "uniquely_matched": 214,
+  "unmatched": 0,
+  "ambiguous": 0,
+  "distinct_frames_observed": 129,
+  "repeated_observations": 85,
+  "max_obs_per_frame": 2,
+  "old_reproduces_stored_biases": true,
+  "frame_shift_rtp_minus_old": {
+   "-1": 214
+  },
+  "median_old": -15.0,
+  "median_new_dedup_first_obs": -81.0,
+  "median_new": -81.0,
+  "cadence": {
+   "capture_diff_mean": 66.0,
+   "capture_diff_counts": {
+    "67": 76,
+    "65": 76,
+    "66": 116
+   },
+   "wall_diff_mean": 66.0
+  },
+  "latency_rtp_med": 22.0,
+  "latency_old_med": -44.0
+ },
+ {
+  "run": "c3-m80/rewrite/d0/run-3",
+  "video_ssrcs": [
+   2865487247
+  ],
+  "subscriber_video_trackSids": [
+   "TR_VC5G6Wk8sLNxmN"
+  ],
+  "inject_frames": 269,
+  "duplicate_rtp_keys": 0,
+  "rtp_increments": {
+   "5940": 268
+  },
+  "rtp_wraps": 0,
+  "eligible": 216,
+  "uniquely_matched": 216,
+  "unmatched": 0,
+  "ambiguous": 0,
+  "distinct_frames_observed": 130,
+  "repeated_observations": 86,
+  "max_obs_per_frame": 2,
+  "old_reproduces_stored_biases": true,
+  "frame_shift_rtp_minus_old": {
+   "-1": 216
+  },
+  "median_old": -15.0,
+  "median_new_dedup_first_obs": -81.0,
+  "median_new": -81.0,
+  "cadence": {
+   "capture_diff_mean": 66.00373134328358,
+   "capture_diff_counts": {
+    "67": 64,
+    "66": 136,
+    "65": 64,
+    "93": 1,
+    "40": 1,
+    "70": 1,
+    "62": 1
+   },
+   "wall_diff_mean": 66.00373134328358
+  },
+  "latency_rtp_med": 22.5,
+  "latency_old_med": -43.0
+ },
+ {
+  "run": "c3-m80/rewrite/d0/run-4",
+  "video_ssrcs": [
+   1480379589
+  ],
+  "subscriber_video_trackSids": [
+   "TR_VCuhkbcdxPbCTD"
+  ],
+  "inject_frames": 270,
+  "duplicate_rtp_keys": 0,
+  "rtp_increments": {
+   "5940": 269
+  },
+  "rtp_wraps": 0,
+  "eligible": 217,
+  "uniquely_matched": 217,
+  "unmatched": 0,
+  "ambiguous": 0,
+  "distinct_frames_observed": 131,
+  "repeated_observations": 86,
+  "max_obs_per_frame": 2,
+  "old_reproduces_stored_biases": true,
+  "frame_shift_rtp_minus_old": {
+   "-1": 217
+  },
+  "median_old": -15.0,
+  "median_new_dedup_first_obs": -81.0,
+  "median_new": -81.0,
+  "cadence": {
+   "capture_diff_mean": 66.0,
+   "capture_diff_counts": {
+    "66": 95,
+    "67": 87,
+    "65": 87
+   },
+   "wall_diff_mean": 66.0
+  },
+  "latency_rtp_med": 21.0,
+  "latency_old_med": -45.0
+ },
+ {
+  "run": "c3-m80/rewrite/d0/run-5",
+  "video_ssrcs": [
+   4237663843
+  ],
+  "subscriber_video_trackSids": [
+   "TR_VC9YVYiKQFyJ8Y"
+  ],
+  "inject_frames": 267,
+  "duplicate_rtp_keys": 0,
+  "rtp_increments": {
+   "5940": 266
+  },
+  "rtp_wraps": 0,
+  "eligible": 212,
+  "uniquely_matched": 212,
+  "unmatched": 0,
+  "ambiguous": 0,
+  "distinct_frames_observed": 128,
+  "repeated_observations": 84,
+  "max_obs_per_frame": 2,
+  "old_reproduces_stored_biases": true,
+  "frame_shift_rtp_minus_old": {
+   "-1": 212
+  },
+  "median_old": -14.0,
+  "median_new_dedup_first_obs": -81.0,
+  "median_new": -81.0,
+  "cadence": {
+   "capture_diff_mean": 66.00375939849624,
+   "capture_diff_counts": {
+    "67": 57,
+    "66": 150,
+    "65": 57,
+    "70": 1,
+    "63": 1
+   },
+   "wall_diff_mean": 66.00375939849624
+  },
+  "latency_rtp_med": 22.0,
+  "latency_old_med": -44.0
+ },
+ {
+  "run": "c3-m80/verbatim/d0/run-1",
+  "video_ssrcs": [
+   3250777216
+  ],
+  "subscriber_video_trackSids": [
+   "TR_VCLkm7bvzKG8tg"
+  ],
+  "inject_frames": 268,
+  "duplicate_rtp_keys": 0,
+  "rtp_increments": {
+   "5940": 267
+  },
+  "rtp_wraps": 0,
+  "eligible": 227,
+  "uniquely_matched": 227,
+  "unmatched": 0,
+  "ambiguous": 0,
+  "distinct_frames_observed": 137,
+  "repeated_observations": 90,
+  "max_obs_per_frame": 2,
+  "old_reproduces_stored_biases": true,
+  "frame_shift_rtp_minus_old": {
+   "0": 227
+  },
+  "median_old": 0.0,
+  "median_new_dedup_first_obs": 0.0,
+  "median_new": 0.0,
+  "cadence": {
+   "capture_diff_mean": 66.00374531835206,
+   "capture_diff_counts": {
+    "66": 116,
+    "67": 75,
+    "65": 74,
+    "72": 1,
+    "60": 1
+   },
+   "wall_diff_mean": 66.00374531835206
+  },
+  "latency_rtp_med": 22.0,
+  "latency_old_med": 22.0
+ },
+ {
+  "run": "c3-m80/verbatim/d0/run-2",
+  "video_ssrcs": [
+   1184108206
+  ],
+  "subscriber_video_trackSids": [
+   "TR_VC45K6n7x2x9xu"
+  ],
+  "inject_frames": 268,
+  "duplicate_rtp_keys": 0,
+  "rtp_increments": {
+   "5940": 267
+  },
+  "rtp_wraps": 0,
+  "eligible": 229,
+  "uniquely_matched": 229,
+  "unmatched": 0,
+  "ambiguous": 0,
+  "distinct_frames_observed": 138,
+  "repeated_observations": 91,
+  "max_obs_per_frame": 2,
+  "old_reproduces_stored_biases": true,
+  "frame_shift_rtp_minus_old": {
+   "0": 229
+  },
+  "median_old": -1.0,
+  "median_new_dedup_first_obs": -1.0,
+  "median_new": -1.0,
+  "cadence": {
+   "capture_diff_mean": 65.99625468164794,
+   "capture_diff_counts": {
+    "65": 18,
+    "67": 17,
+    "66": 232
+   },
+   "wall_diff_mean": 65.99625468164794
+  },
+  "latency_rtp_med": 22.0,
+  "latency_old_med": 22.0
+ },
+ {
+  "run": "c3-m80/verbatim/d0/run-3",
+  "video_ssrcs": [
+   1592010393
+  ],
+  "subscriber_video_trackSids": [
+   "TR_VCuwai5Va6qcVq"
+  ],
+  "inject_frames": 269,
+  "duplicate_rtp_keys": 0,
+  "rtp_increments": {
+   "5940": 268
+  },
+  "rtp_wraps": 0,
+  "eligible": 229,
+  "uniquely_matched": 229,
+  "unmatched": 0,
+  "ambiguous": 0,
+  "distinct_frames_observed": 138,
+  "repeated_observations": 91,
+  "max_obs_per_frame": 2,
+  "old_reproduces_stored_biases": true,
+  "frame_shift_rtp_minus_old": {
+   "0": 229
+  },
+  "median_old": -1.0,
+  "median_new_dedup_first_obs": -1.0,
+  "median_new": -1.0,
+  "cadence": {
+   "capture_diff_mean": 66.0,
+   "capture_diff_counts": {
+    "66": 114,
+    "67": 77,
+    "65": 77
+   },
+   "wall_diff_mean": 66.0
+  },
+  "latency_rtp_med": 22.0,
+  "latency_old_med": 22.0
+ },
+ {
+  "run": "c3-m80/verbatim/d0/run-4",
+  "video_ssrcs": [
+   2786508866
+  ],
+  "subscriber_video_trackSids": [
+   "TR_VCus9HKbsCBTed"
+  ],
+  "inject_frames": 267,
+  "duplicate_rtp_keys": 0,
+  "rtp_increments": {
+   "5940": 266
+  },
+  "rtp_wraps": 0,
+  "eligible": 227,
+  "uniquely_matched": 227,
+  "unmatched": 0,
+  "ambiguous": 0,
+  "distinct_frames_observed": 137,
+  "repeated_observations": 90,
+  "max_obs_per_frame": 2,
+  "old_reproduces_stored_biases": true,
+  "frame_shift_rtp_minus_old": {
+   "0": 227
+  },
+  "median_old": -1.0,
+  "median_new_dedup_first_obs": -1.0,
+  "median_new": -1.0,
+  "cadence": {
+   "capture_diff_mean": 65.99624060150376,
+   "capture_diff_counts": {
+    "65": 83,
+    "67": 82,
+    "66": 101
+   },
+   "wall_diff_mean": 65.99624060150376
+  },
+  "latency_rtp_med": 22.0,
+  "latency_old_med": 22.0
+ },
+ {
+  "run": "c3-m80/verbatim/d0/run-5",
+  "video_ssrcs": [
+   3585411125
+  ],
+  "subscriber_video_trackSids": [
+   "TR_VCtt7HwdnGoGh4"
+  ],
+  "inject_frames": 268,
+  "duplicate_rtp_keys": 0,
+  "rtp_increments": {
+   "5940": 267
+  },
+  "rtp_wraps": 0,
+  "eligible": 227,
+  "uniquely_matched": 227,
+  "unmatched": 0,
+  "ambiguous": 0,
+  "distinct_frames_observed": 137,
+  "repeated_observations": 90,
+  "max_obs_per_frame": 2,
+  "old_reproduces_stored_biases": true,
+  "frame_shift_rtp_minus_old": {
+   "0": 227
+  },
+  "median_old": -1.0,
+  "median_new_dedup_first_obs": -1.0,
+  "median_new": -1.0,
+  "cadence": {
+   "capture_diff_mean": 66.00374531835206,
+   "capture_diff_counts": {
+    "67": 62,
+    "66": 144,
+    "65": 61
+   },
+   "wall_diff_mean": 66.00374531835206
+  },
+  "latency_rtp_med": 23.0,
+  "latency_old_med": 23.0
+ }
+]

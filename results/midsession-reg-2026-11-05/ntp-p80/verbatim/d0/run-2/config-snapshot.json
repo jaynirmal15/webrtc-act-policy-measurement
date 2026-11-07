@@ -1,0 +1,13 @@
+{
+"registered":true,"prereg_addendum":"midsession-prereg-addendum.md",
+"prereg_commit":"7cdb4f905d901b0049e23c7649a9ceb0a8d71d3d",
+"cell":"ntp-p80","ntp_label":"ntp_p80","ntp_shift_ms":80,
+"sr_ntp_skew_flag_ms":-80,"sr_ntp_estimate_perturbation_ms":80,
+"policy":"verbatim","policy_name":"verbatim_dsrpt_midsession","pr_4812_applied":true,
+"delta_inject_ms":0,"run":2,"sr_ntp_skew_onset_ms":20000,"sr_hold_ms":0,
+"livekit_binary":"livekit-server-verbatim-dsrpt","livekit_binary_sha256":"628ddfe1c8e301e4da02c5bafea16bbdd9aca8002469669330d166ea30a13f86",
+"publisher_binary_sha256":"573dc680662841cc5e56c7f3d76f9519e9c2a97470e97a4f24ec19739674698c",
+"config":"livekit-verbatim-dsrpt.yaml","act_force_ext_id":8,"room":"midsess-ntp-p80-verbatim-r2-1793940281","sample_ms":42000,"duration":"45s",
+"git_sha":"7cdb4f905d901b0049e23c7649a9ceb0a8d71d3d",
+"started_local":"2026-11-05T23:44:41-05:00"
+}

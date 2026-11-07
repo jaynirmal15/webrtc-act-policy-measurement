@@ -1,0 +1,19 @@
+{
+  "exploratory": true,
+  "tag": "c3-p80-onset20000",
+  "run": 2,
+  "rc": 0,
+  "verdict": "C0_BIAS_EXCEEDS_TAU_B",
+  "captureTimestamp_seen": true,
+  "paired_n": 867,
+  "median_bias_ms_raw": 13,
+  "first_frame_unix_ms": 1793934670136,
+  "first_modified_sr_unix_ms": 1793934691029,
+  "onset_sr_index": 21,
+  "skewed_count": 23,
+  "unmodified_count": 20,
+  "sr_seen": 43,
+  "onset_delay_ms": 20000,
+  "skew_ms": -80,
+  "onset_lag_ms": 20893
+}

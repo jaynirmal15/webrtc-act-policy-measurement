@@ -1,0 +1,31 @@
+===== START c3-m80/rewrite/d0/run-1 try=1 2026-11-05T21:40:22-05:00 =====
+c3-m80/rewrite/d0/run-1 rc=0 C0_BIAS_EXCEEDS_TAU_B ct_seen true paired 217 med -15
+OK c3-m80/rewrite/d0/run-1 rc=0
+===== START c3-m80/rewrite/d0/run-2 try=2 2026-11-05T21:41:07-05:00 =====
+c3-m80/rewrite/d0/run-2 rc=0 C0_BIAS_EXCEEDS_TAU_B ct_seen true paired 214 med -15
+OK c3-m80/rewrite/d0/run-2 rc=0
+===== START c3-m80/rewrite/d0/run-3 try=3 2026-11-05T21:41:52-05:00 =====
+c3-m80/rewrite/d0/run-3 rc=0 C0_BIAS_EXCEEDS_TAU_B ct_seen true paired 216 med -15
+OK c3-m80/rewrite/d0/run-3 rc=0
+===== START c3-m80/rewrite/d0/run-4 try=4 2026-11-05T21:42:36-05:00 =====
+c3-m80/rewrite/d0/run-4 rc=0 C0_BIAS_EXCEEDS_TAU_B ct_seen true paired 217 med -15
+OK c3-m80/rewrite/d0/run-4 rc=0
+===== START c3-m80/rewrite/d0/run-5 try=5 2026-11-05T21:43:21-05:00 =====
+c3-m80/rewrite/d0/run-5 rc=0 C0_BIAS_EXCEEDS_TAU_B ct_seen true paired 212 med -14
+OK c3-m80/rewrite/d0/run-5 rc=0
+===== START c3-m80/verbatim/d0/run-1 try=1 2026-11-05T21:44:05-05:00 =====
+c3-m80/verbatim/d0/run-1 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 227 med 0
+OK c3-m80/verbatim/d0/run-1 rc=0
+===== START c3-m80/verbatim/d0/run-2 try=2 2026-11-05T21:44:50-05:00 =====
+c3-m80/verbatim/d0/run-2 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 229 med -1
+OK c3-m80/verbatim/d0/run-2 rc=0
+===== START c3-m80/verbatim/d0/run-3 try=3 2026-11-05T21:45:35-05:00 =====
+c3-m80/verbatim/d0/run-3 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 229 med -1
+OK c3-m80/verbatim/d0/run-3 rc=0
+===== START c3-m80/verbatim/d0/run-4 try=4 2026-11-05T21:46:19-05:00 =====
+c3-m80/verbatim/d0/run-4 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 227 med -1
+OK c3-m80/verbatim/d0/run-4 rc=0
+===== START c3-m80/verbatim/d0/run-5 try=5 2026-11-05T21:47:04-05:00 =====
+c3-m80/verbatim/d0/run-5 rc=0 C0_BIAS_WITHIN_TAU_B ct_seen true paired 227 med -1
+OK c3-m80/verbatim/d0/run-5 rc=0
+BATCH_DONE 2026-11-05T21:47:48-05:00

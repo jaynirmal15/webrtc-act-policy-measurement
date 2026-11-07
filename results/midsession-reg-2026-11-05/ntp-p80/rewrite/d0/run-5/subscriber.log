@@ -1,0 +1,9 @@
+--- C0 rewrite_dsrpt_midsession ---
+verdict: C0_BIAS_EXCEEDS_TAU_B
+delta_inject_ms: 0
+captureTimestamp_seen: true
+paired_n: 867
+median_bias_ms: 13
+abs_median_bias_ms: 13
+compared_to_tau_b_10ms: false
+wrote: /workspace/paper3/results/midsession-reg-2026-11-05/ntp-p80/rewrite/d0/run-5/result.json

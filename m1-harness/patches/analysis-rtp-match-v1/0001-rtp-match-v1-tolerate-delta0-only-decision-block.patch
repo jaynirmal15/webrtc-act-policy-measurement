@@ -1,0 +1,65 @@
+From d35a180d89b6938f36cdafc55cbd43e4f88a80ea Mon Sep 17 00:00:00 2001
+From: Jay Suresh Nirmal <jaynirmal15@gmail.com>
+Date: Fri, 6 Nov 2026 05:34:39 +0000
+Subject: [PATCH] =?UTF-8?q?rtp-match-v1:=20tolerate=20=CE=94=3D0-only=20in?=
+ =?UTF-8?q?put=20in=20decision=20block=20(repro=20subset)?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Computes per-delta supported as before when c3-p80 is present and None only when it is absent. The overall direction.supported is None when there are no per-delta entries or any is None, and all(...) otherwise.
+---
+ rtp_rematch.py | 34 ++++++++++++++++++++++++++--------
+ 1 file changed, 26 insertions(+), 8 deletions(-)
+
+diff --git a/rtp_rematch.py b/rtp_rematch.py
+index 0e20d9a..bf38c18 100644
+--- a/rtp_rematch.py
++++ b/rtp_rematch.py
+@@ -78,17 +78,35 @@ for k,c in sorted(cond.items()):
+       latency_playout_minus_inject_rtp_med=float(np.median(c['lat_new'])),latency_old_med=float(np.median(c['lat_old'])))
+ def fires(k):
+     b=C[k]['bias_rtp_match_v1'];lo,hi=b['boot95_CI_median_of_run_medians']; return abs(b['pooled_median'])>TAU and (lo>TAU or hi<-TAU)
+-fd={d:fires(f'c3-m80/rewrite/{d}') for d in ['d0','d50']}
+-def ex0(k): lo,hi=C[k]['bias_rtp_match_v1']['boot95_CI_median_of_run_medians']; return lo>0 or hi<0
++present_deltas=sorted({k.split('/')[-1] for k in C if k.startswith('c3-m80/rewrite/')})
++fd={d:fires(f'c3-m80/rewrite/{d}') for d in present_deltas if f'c3-m80/rewrite/{d}' in C}
++def ex0(k):
++    if k not in C: return False
++    lo,hi=C[k]['bias_rtp_match_v1']['boot95_CI_median_of_run_medians']; return lo>0 or hi<0
+ dr={}
+-for d in ['d0','d50']:
+-    m=C[f'c3-m80/rewrite/{d}']['bias_rtp_match_v1']['pooled_median'];p=C[f'c3-p80/rewrite/{d}']['bias_rtp_match_v1']['pooled_median']
+-    v=[abs(C[f'c3-{s}/verbatim/{d}']['bias_rtp_match_v1']['pooled_median']) for s in ['m80','p80']]
+-    dr[d]=dict(rewrite_m80=m,rewrite_p80=p,opposite_signs=m*p<0,cis_exclude_0=ex0(f'c3-m80/rewrite/{d}') and ex0(f'c3-p80/rewrite/{d}'),verbatim_abs_le_2=all(x<=2 for x in v))
+-    dr[d]['supported']=all([dr[d]['opposite_signs'],dr[d]['cis_exclude_0'],dr[d]['verbatim_abs_le_2']])
++for d in present_deltas:
++    km=f'c3-m80/rewrite/{d}'; kp=f'c3-p80/rewrite/{d}'
++    if km not in C: continue
++    m=C[km]['bias_rtp_match_v1']['pooled_median']
++    p=C[kp]['bias_rtp_match_v1']['pooled_median'] if kp in C else None
++    v=[]
++    for s in ['m80','p80']:
++        kk=f'c3-{s}/verbatim/{d}'
++        if kk in C: v.append(abs(C[kk]['bias_rtp_match_v1']['pooled_median']))
++    entry=dict(rewrite_m80=m,rewrite_p80=p)
++    if p is not None:
++        entry.update(opposite_signs=m*p<0,cis_exclude_0=ex0(km) and ex0(kp))
++    else:
++        entry.update(opposite_signs=None,cis_exclude_0=ex0(km),note='p80 not in this input set')
++    entry['verbatim_abs_le_2']=all(x<=2 for x in v) if v else None
++    entry['supported']=all([entry['opposite_signs'],entry['cis_exclude_0'],entry['verbatim_abs_le_2']]) if p is not None else None  # None only when c3-p80 is absent (subset repro)
++    dr[d]=entry
++# Overall direction: null (not evaluated) if there are no per-delta entries or any is null; never rely on all([]) or all([None]).
++per_delta_supported=[x['supported'] for x in dr.values()]
++direction_supported=None if (not per_delta_supported or any(s is None for s in per_delta_supported)) else all(per_delta_supported)
+ out=dict(analysis_version='rtp-match-v1',status='post-review analysis correction applied to existing data; NOT the preregistered matcher',
+   source=R,tau_b_ms=TAU,bootstrap=dict(resamples=B,seed=SEED),conditions=C,
+-  decision=dict(per_delta_fires=fd,bias_arm_fires=all(fd.values())),direction=dict(per_delta=dr,supported=all(x['supported'] for x in dr.values())),
++  decision=dict(per_delta_fires=fd,bias_arm_fires=all(fd.values())),direction=dict(per_delta=dr,supported=direction_supported),
+   conversion_branches={'|'.join(k):v for k,v in sorted(branches.items())},examples=examples,failed_runs_not_pooled=sorted(os.listdir(R+'/_failed')))
+ json.dump(out,open(OUT+'/summary.json','w'),indent=1); json.dump(runs_out,open(OUT+'/per_run.json','w'),indent=1)
+ json.dump({k:{'rtp_match_v1':c['new'],'superseded_act_nearest':c['old']} for k,c in sorted(cond.items())},open(OUT+'/observations.json','w'))  # per-run per-API-observation biases (for figures)
+-- 
+2.47.3
+

@@ -1,0 +1,20 @@
+# M1 C0 DSRPT stress — VERBATIM policy (#4812 flag) + DSRPT=true.
+# Requires bin/livekit-server-verbatim-dsrpt (verbatim-on-pin + DSRPT YAML wiring).
+# Verbatim skips SR-gate+Rewrite; DSRPT should not bias ACT when flag is true.
+port: 7880
+bind_addresses:
+  - 127.0.0.1
+rtc:
+  tcp_port: 7881
+  port_range_start: 50000
+  port_range_end: 50100
+  use_external_ip: false
+  forward_abs_capture_time_verbatim: true
+  disable_sender_report_pass_through: true
+keys:
+  devkey: secret
+logging:
+  level: info
+  pion_level: warn
+room:
+  auto_create: true

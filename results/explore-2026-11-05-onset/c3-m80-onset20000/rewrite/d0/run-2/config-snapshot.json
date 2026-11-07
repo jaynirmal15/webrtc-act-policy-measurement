@@ -1,0 +1,10 @@
+{
+"exploratory":true,"cell":"c3-onset","policy":"rewrite","policy_name":"rewrite_dsrpt_skew_onset_EXPLORATORY",
+"delta_inject_ms":0,"run":2,"sr_ntp_skew_flag_ms":80,"sr_ntp_estimate_perturbation_ms":-80,
+"sr_ntp_skew_onset_ms":20000,"sr_hold_ms":0,
+"livekit_binary":"livekit-server-dsrpt","livekit_binary_sha256":"6d5fa7aeb8ad167e58b7de6b24a0bb1713a52d485ec4862cb9f22e90a7436987",
+"publisher_binary_sha256":"573dc680662841cc5e56c7f3d76f9519e9c2a97470e97a4f24ec19739674698c",
+"config":"livekit-dsrpt.yaml","act_force_ext_id":8,"room":"explore-onset-m80-r2-1793934456","sample_ms":42000,"duration":"45s",
+"git_sha":"9670c74b7c8363fff957c6867bb209bf4d1937ba",
+"started_local":"2026-11-05T22:07:36-05:00"
+}

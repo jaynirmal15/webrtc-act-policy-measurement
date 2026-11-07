@@ -1,0 +1,15 @@
+{
+  "n": 300,
+  "realtime_step_min_s": 1.0014123916625977,
+  "realtime_step_max_s": 1.0143094062805176,
+  "monotonic_step_min_s": 1.0014116400016064,
+  "monotonic_step_max_s": 1.0143107949988917,
+  "realtime_abs_step_minus_1_max_ms": 14.309406280517578,
+  "monotonic_abs_step_minus_1_max_ms": 14.310794998891652,
+  "rt_minus_mono_drift_ms": 0.00476837158203125,
+  "rt_minus_mono_range_ms": 0.04553794860839844,
+  "flags": [
+    "realtime consecutive discontinuity >10ms",
+    "monotonic consecutive discontinuity >10ms"
+  ]
+}
