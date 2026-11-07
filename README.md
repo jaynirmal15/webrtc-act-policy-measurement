@@ -3,7 +3,7 @@
 Jay Suresh Nirmal
 ORCID: [0009-0003-0886-4663](https://orcid.org/0009-0003-0886-4663)
 
-This is the measurement artifact for *Absolute Capture Time Policies in a WebRTC SFU: Measurement Bias and Timestamp Availability under a Wrong Clock Estimate* (Jay Suresh Nirmal). It contains the harness, the patch series for the SFU binaries, the pre-registration, the raw replication data, and the post-review analysis. The manuscript is not included.
+This is the measurement artifact for *Absolute Capture Time Policies in a WebRTC SFU: Measurement Bias and Timestamp Availability under a Wrong Clock Estimate* (Jay Suresh Nirmal). It contains the harness, the patch series for the SFU binaries, the pre-registration, the raw replication data, and the corrected frame-matching analysis. The manuscript is not included.
 
 The study compares two ways a LiveKit SFU can handle the RTP Absolute Capture Time (ACT) header extension:
 
@@ -24,6 +24,14 @@ It measures capture-time bias and timestamp availability under clean and deliber
 Each cell has 5 independent runs per policy and per delay (`d0`, `d50`). Every attempt is kept: failed attempts are under `_failed/`, and each `run-index.log` lists them all (83 attempts for 80 retained runs in `rep-2026-10-15b`; 21 for 20 in `rep-2026-10-15-c0-dsrpt`). C1 (A/V sync) exists only as a historical single-run summary and has no raw data here. See `MANIFEST.md` for the full inventory and for data that cannot be recovered.
 
 The pre-registration is `pilot-prereg.json`, `replication-prereg-addendum.md` and `c0-dsrpt-prereg-addendum.md`.
+
+### Raw `result.json` values are not the paper's numbers
+
+Each run's `result.json` (and its copy `trial-d0.json`) records bias as the harness computed it at run time, with the original matcher, which pairs each API observation with the inject event nearest to its capture time. That matcher is superseded, and its values differ from the paper's. In `results/rep-2026-10-15b/c3-m80/rewrite/d0/` the per-run `median_bias_ms` is −14 or −15 ms where the paper reports −81 ms. The paper's values come from the RTP-timestamp matcher in `analysis/rtp-match-v1/` (and `analysis/rtp-match-v1-c0-dsrpt/`, `analysis/rtp-match-v1-repro-2026-11-05/`). For the mid-session runs, `result.json` holds a whole-window median under the same superseded matcher (−1 and +13 ms for the rewrite arms); the registered values come from `analysis/midsession-reg-2026-11-05/REGISTERED-ANALYSIS.json`, which `evaluate_midsession_reg.py` computes per onset window from each run's raw samples.
+
+### "post-review" in the analysis outputs
+
+The `status` field of `summary.json`, and the first line of `summary.md` and `run_output.txt`, in `analysis/rtp-match-v1/`, `analysis/rtp-match-v1-c0-dsrpt/` and `analysis/rtp-match-v1-repro-2026-11-05/` read "post-review analysis correction". The scripts' docstrings, `MANIFEST.md` and `c0-dsrpt-prereg-addendum.md` use the same phrase. It refers to an internal audit of the frame-matching procedure after the replication batch, not to peer review. The strings are left unchanged because regenerating them would alter every output hash.
 
 ### Re-running the analysis (no SFU needed)
 
@@ -116,6 +124,21 @@ chmod -R u+w third_party/server-sdk-go
 ### 4. Video fixture
 
 `m1-harness/media/c0-video.ivf` is shipped: synthetic solid red, 320×240 VP8, 1800 frames, sha256 `fe6a7fdd267054a5405844bfd67db71d3a8dedff5f662427fc1d0f29dd7a8f09`. Running `make-c0-video.sh` regenerates it byte-for-byte with ffmpeg 7.1.5-0+deb13u1 (Debian 13). Other ffmpeg or libvpx builds may produce a different file; the script prints the sha256.
+
+## Host requirements
+
+The publisher, SFU and subscriber run on one host and share its wall clock. Bias is the difference between two timestamps taken from that clock, so the clock's absolute accuracy is irrelevant, but it must not step during a run.
+
+- A clock that does not step while a batch runs.
+- No sleep or suspend while a batch runs.
+- At least four dedicated CPU cores and 8 GB RAM: the SFU, the Pion publisher and a software-rendered Chromium run concurrently, and CPU contention delays frames and polls.
+- Linux, kernel 6.x (the October data were collected on kernel 6.12).
+
+A macOS host running Docker Desktop is not adequate. In a test on an Intel MacBook Pro (Docker Desktop VM, 8 vCPUs), the host clock was 77 minutes behind within about an hour of being synchronised and was corrected in steps, one of which moved the VM clock 62.5 minutes in the middle of a run; host sleep paused the VM; and a load average of 9–12 on the 8 vCPUs pushed the publisher's 66 ms frame intervals to between 0 and 250 ms. None of the attempted runs produced a valid result.
+
+### Run time
+
+From the recorded first-frame times, consecutive runs start a median of about 45 s apart for the C0, C2, C3 and C0-DSRPT cells (16 s sampling window; 23 s for C2) and about 71 s apart for the mid-session runs (42 s window). Per batch, first to last run: `rep-2026-10-15b`, 80 retained runs in 107 min, including one 41-minute pause between runs; `rep-2026-10-15-c0-dsrpt`, 20 runs in 15 min; `repro-2026-11-05`, 10 runs in 7 min; `explore-2026-11-05-onset`, 6 runs in 6 min; `midsession-reg-2026-11-05`, 20 runs in 22 min.
 
 ## Running
 
